@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_24_155304) do
+ActiveRecord::Schema.define(version: 2020_02_24_160216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doc_lines", force: :cascade do |t|
+    t.integer "type"
+    t.float "amount"
+    t.bigint "documents_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["documents_id"], name: "index_doc_lines_on_documents_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.integer "année"
+    t.integer "mois"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +46,6 @@ ActiveRecord::Schema.define(version: 2020_02_24_155304) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "doc_lines", "documents", column: "documents_id"
+  add_foreign_key "documents", "users"
 end
