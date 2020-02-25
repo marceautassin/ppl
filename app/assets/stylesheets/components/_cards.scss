@@ -2,9 +2,8 @@
   display:grid;
   grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
   grid-gap: 4rem;
-  padding:3rem;
   p{
-      color: #000;
+      color: #151515;
       font-size: 18px;
   }
 }
@@ -13,20 +12,22 @@
   border: none;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 14em;
+  height: 16em;
   border-radius: 20px;
   -webkit-transform: translate3d(0, 0, 0);
-  --background:#FFFFFF;
-  --text:black;
+  --background: #F9D132;
+  --text:white;
   position: relative;
-  box-shadow:0 0 2rem -1rem rgba(0,0,0,.1);
+  border: 1px solid #f7f7f7;
   .multi-button{
     opacity: 0;
   }
   &:hover{
+    border: 1px solid rgba(249,209,50,0.3);
     .card-body {
       opacity: 1;
-      background: linear-gradient(130deg, #ffffffc4 0%, #ffffff73 100%);
+      background: rgba(255,255,250,0.95);
+      box-shadow:  0px 0px 1px rgba(249,209,50,0.2);
     }
     .multi-button{
       opacity: 1;
@@ -39,14 +40,24 @@
 }
 
 .card-body{
-  transition: .3s all;
+  transition: .5s all;
   border-radius: 20px;
   top: 0;
   left: 0;
   bottom: 0;
   width: 100%;
-  color: #fff;
+  color: #211d43;
   opacity: 0;
+  p{
+    color: #b7b3a5;
+  }
+}
+
+.section {
+  margin: 2rem;
+  padding:4rem;
+  background-color: $white;
+  border-radius: 20px;
 }
 
 
