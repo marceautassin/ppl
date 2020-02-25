@@ -1,0 +1,16 @@
+<div class="container flex-column">
+  <h1 class="my-3">Ajouter un bulletin de salaire</h1>
+  <%= simple_form_for(Document.new) do |form| %>
+    <%= form.input :photo, as: :file %>
+    <div class="row">
+      <div class="col">
+        <%= form.input :year, as: :date,  discard_day: true, discard_month: true %>
+      </div>
+      <div class="col">
+        <%= form.input :month, as: :date,  discard_day: true, discard_year: true  %>
+      </div>
+    </div>
+
+    <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2'%>
+  <% end %>
+</div>
