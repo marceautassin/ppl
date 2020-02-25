@@ -1,2 +1,24 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<h1>Mes documents</h1>
+
+<% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
+
+<div class="container">
+  <% groups.each do |group| %>
+    <h2><%= group[0] %></h2>
+    <div class="cards" style="position: relative;">
+      <% group[1].each do |document| %>
+        <div class="card" style="background-image: url('<%= cl_image_path(document.photo.key, format: :jpg) %>');">
+          <div class="multi-button">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-share-alt"></a>
+            <a href="#" class="fas fa-trash"></a>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= document.name %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
