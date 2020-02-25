@@ -16,7 +16,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
-
+gem 'faker'
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :development do
