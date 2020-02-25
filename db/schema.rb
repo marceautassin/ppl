@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2020_02_25_141541) do
   end
 
   create_table "doc_lines", force: :cascade do |t|
-    t.integer "type"
+    t.integer "category"
     t.float "amount"
-    t.bigint "documents_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["documents_id"], name: "index_doc_lines_on_documents_id"
+    t.bigint "document_id"
+    t.index ["document_id"], name: "index_doc_lines_on_document_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 2020_02_25_141541) do
     t.datetime "updated_at", null: false
     t.integer "year"
     t.integer "month"
+    t.string "entreprise"
+    t.string "siret"
+    t.string "address"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -76,6 +79,6 @@ ActiveRecord::Schema.define(version: 2020_02_25_141541) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "doc_lines", "documents", column: "documents_id"
+  add_foreign_key "doc_lines", "documents"
   add_foreign_key "documents", "users"
 end
