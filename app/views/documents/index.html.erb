@@ -3,6 +3,11 @@
 <% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
 
 <div class="container">
+  <div class="button-add">
+    <i class="fas fa-plus-circle", id="buttonModal", data-toggle="modal", aria-haspopup= "true", aria-expanded= "false"></i>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    </div>
+  </div>
   <% groups.each do |group| %>
     <h2><%= group[0] %></h2>
     <div class="cards" style="position: relative;">
