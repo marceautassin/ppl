@@ -1,9 +1,10 @@
 .cards{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 16px;
+  display:grid;
+  grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
+  grid-gap: 4rem;
+  padding:3rem;
   p{
-      color: $pink;
+      color: #000;
       font-size: 18px;
   }
 }
@@ -12,19 +13,42 @@
   border: none;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 23em;
+  height: 14em;
   border-radius: 20px;
-  box-shadow: 1px 1px 52px rgba(0, 0, 0, 0.1);
-  &:hover .card-body{
-    border: 1px solid black;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+  -webkit-transform: translate3d(0, 0, 0);
+  --background:#FFFFFF;
+  --text:black;
+  position: relative;
+  box-shadow:0 0 2rem -1rem rgba(0,0,0,.1);
+  .multi-button{
+    opacity: 0;
+  }
+  &:hover{
+    .card-body {
+      opacity: 1;
+      background: linear-gradient(130deg, #ffffffc4 0%, #ffffff73 100%);
+    }
+    .multi-button{
+      opacity: 1;
+    }
+  }
+  &:hover .multi-button, .multi-button:focus-within { //Hover or a button inside is focused
+    width:10rem;
+    height:10rem;
   }
 }
 
 .card-body{
-  background: #000;
+  transition: .3s all;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  opacity: 0;
 }
+
 
 @media(max-width: 992px) {
   .cards {
@@ -41,3 +65,5 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+

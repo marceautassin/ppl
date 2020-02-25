@@ -1,4 +1,4 @@
-<h1>Documents</h1>
+<h1>Mes documents</h1>
 
 <% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
 
@@ -8,7 +8,12 @@
     <div class="cards" style="position: relative;">
       <% group[1].each do |document| %>
         <div class="card" style="background-image: url('<%= cl_image_path(document.photo.key, format: :jpg) %>');">
-          <div class="card-body" style="position: absolute; bottom: 0;">
+          <div class="multi-button">
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-share-alt"></a>
+            <a href="#" class="fas fa-trash"></a>
+          </div>
+          <div class="card-body">
             <p class="card-text"><%= document.name %></p>
           </div>
         </div>
