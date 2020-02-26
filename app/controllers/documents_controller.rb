@@ -14,11 +14,11 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
-    @document.name = "Bulletin_de_salaire_#{params[:document]["year(1i)"]}_#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]}"
+    @document.name = "#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]} #{params[:document]["year(1i)"]}"
     @document.user = current_user
 
     if @document.save
-      flash[:notice] = 'Votre bulletin a été sauvegardé.'
+      # flash[:notice] = 'Votre bulletin a été sauvegardé.'
       redirect_to edit_document_path(@document)
     else
       render :new
@@ -27,6 +27,17 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    ocr = {:salaire_brut=>"5083.33",
+      :salaire_net_paye=>"3868.84",
+      :impot_revenu=>"590.75",
+      :conge_n_1=>"24.0",
+      :conge_n=>"2.08",
+      :rtt=>"2.88"}
+    ocr.each do |key, value|
+      dl = DocLine.new(category: key, amount: value.to_f)
+      dl.document = @document
+      dl.save!
+    end
     #OCR methode
   end
 
@@ -44,11 +55,6 @@ class DocumentsController < ApplicationController
     @document = Document.find(document_params)
   end
 
-  private
-
-  def document_params
-    params.require(:document).permit(:name, :user_id, :year, :month)
-  end
 
   private
 
