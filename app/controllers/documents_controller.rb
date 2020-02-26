@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"] )
+    @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
     @document.name = "Bulletin_de_salaire_#{params[:document]["year(1i)"]}_#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]}"
     @document.user = current_user
 
