@@ -8,3 +8,15 @@
 a:hover{
   text-decoration: none;
 }
+
+.button-add {
+  position: relative;
+  top: 40px;
+  right: 100px;
+  z-index: 100;
+}
+
+
+#buttonModal{
+  font-size: 2.5rem;
+}
