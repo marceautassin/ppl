@@ -8,3 +8,16 @@
 a:hover{
   text-decoration: none;
 }
+
+.button-add {
+  position: absolute;
+  top: 120px;
+  right: 80px;
+  z-index: 100;
+}
+
+
+#buttonModal{
+  font-size: 3rem;
+  color: $primary;
+}
