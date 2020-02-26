@@ -5,24 +5,39 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @document = Document.find(document_params)
-  end
-
-  def create
-    # @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
-    # @document.name = "Bulletin_de_salaire_#{params[:document]["year(1i)"]}_#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]}"
-    # @document.user = current_user
-
-    #   redirect_to document_doc_lines(@document)
-
-    # if @document.save
-    # else
-    #   render :new
-    # end
+    @document = Document.find(params[:id])
   end
 
   def new
     @document = Document.new
+  end
+
+  def create
+    @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
+    @document.name = "Bulletin_de_salaire_#{params[:document]["year(1i)"]}_#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]}"
+    @document.user = current_user
+
+    if @document.save
+      flash[:notice] = 'Votre bulletin a été sauvegardé.'
+      redirect_to edit_document_path(@document)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @document = Document.find(params[:id])
+    #OCR methode
+  end
+
+  def update
+    @document = Document.find(params[:id])
+    if @document.update_attributes(params_documents)
+      redirect_to @document, notice: 'Successfully updated document'
+    else
+      render :edit
+    end
+
   end
 
   def destroy
@@ -38,6 +53,6 @@ class DocumentsController < ApplicationController
   private
 
   def params_documents
-    params.require(:document).permit(:photo, ["year(1i)"], ["month(2i)"] )
+    params.require(:document).permit(:photo, ["year(1i)"], ["month(2i)"], doc_lines_attributes: [:id, :name, :category, :amount] )
   end
 end
