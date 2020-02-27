@@ -1,0 +1,6 @@
+<%=  current_year = Date.today.year %>
+<% dateRange = DocLine.where(category: :salaire_net_paye).group_by { |m| m.data_entry_period.year } %>
+<%= area_chart dateRange[current_year].pluck(:data_entry_period, :amount), xtitle: "Mois", ytitle: "Salaire net", library: { animation: { easing: 'easeOutQuad'}}, colors: ["rgb(213,209,255)"], prefix: "€", thousands: " ", round: 2, download: true %>
+
+cumul = <%= DocLine.salaire_net_paye.sum(:amount).round(2)%>€
+
