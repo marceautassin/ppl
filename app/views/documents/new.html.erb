@@ -1,2 +1,18 @@
-<h1>Documents#new</h1>
-<p>Find me in app/views/documents/new.html.erb</p>
+  <div class="container">
+    <div  class="text-center m-4">
+      <h1>S'inscrire</h1>
+    </div>
+    <%= simple_form_for(Document.new) do |form| %>
+      <%= form.input :photo, as: :file %>
+      <div class="row">
+        <div class="col">
+          <%= form.input :year, as: :date,  discard_day: true, discard_month: true %>
+        </div>
+        <div class="col">
+          <%= form.input :month, as: :date,  discard_day: true, discard_year: true  %>
+        </div>
+      </div>
+
+      <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2'%>
+    <% end %>
+  </div>
