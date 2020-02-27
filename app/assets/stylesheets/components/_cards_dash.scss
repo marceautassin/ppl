@@ -1,0 +1,39 @@
+.card-dash{
+  background: #fff;
+  padding: 7%;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px $light-blue;
+  p{
+    font-size: 14px;
+  }
+  img{
+    height: 50px;
+  }
+}
+
+.salcharge{
+  background: $white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px $light-blue;
+}
+
+
+.third > div{
+  background: $primary;
+  color: white;
+}
+
+.salnet{
+  border-radius: 20px;
+  background: $light-blue;
+}
+
+.info{
+  background: $orange;
+  border-radius: 20px;
+  margin-top: 20%;
+  color: #fff;
+  p{
+    font-size: 12px;
+  }
+}

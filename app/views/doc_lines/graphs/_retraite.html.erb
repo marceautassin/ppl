@@ -1,0 +1,9 @@
+<%= pie_chart [
+                ["Jours travaillés", Document.count * 30 ],
+                ["Retraite dans", 480 * 30 ],
+              ],
+              width: '150px',
+              height: '150px',
+              dataset: {borderWidth: 1},
+              library: { animation: { easing: 'easeOutQuad'}}, donut: true, colors: ['#A1A5EE', '#F9D132'], legend: false, label: 'R.T.T restants', thousands: " " %>
+

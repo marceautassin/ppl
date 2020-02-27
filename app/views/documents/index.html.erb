@@ -1,4 +1,5 @@
 <% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
+<% salnet = DocLine.where(category: :salaire_net_paye ).group_by{ |m| m.data_entry_period.year } %>
 
 <div class="container">
   <h1 class="m-5">Mes documents</h1>
@@ -11,7 +12,7 @@
         </div>
         <div class="text-center">
           <% sal1 = 0 %>
-          <% DocLine.salaire_brut.each { |sal| sal1 +=  sal.amount } %>
+          <% salnet[group[0]].each { |sal| sal1 +=  sal.amount } %>
           <p style="font-size: 11px;" class="m-0">Revenu annuel<strong class="ml-5"><%= sal1.round.to_s.reverse.gsub(/...(?=.)/,'\& ').reverse %> €</strong></p>
           <div class="progress">
             <div class="progress-bar bg-success m-0" role="progressbar" style="width: <%= (100 * group[1].size)/(12) %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -19,7 +20,7 @@
           <em class="w-100 text-center" style="font-size: 11px;"><%= group[1].size %> fiches sur 12</em>
         </div>
         <div>
-          <%= link_to document_doc_lines_path(:document_id) do %>
+          <%= link_to doc_lines_path do %>
             <div class="d-flex justify-content-between btn btn-primary">
               Mon tableau de bord
               <i class="ml-3 fas fa-chevron-right"></i>
