@@ -1,0 +1,14 @@
+<% impots = DocLine.where(category: :impot_revenu).pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
+<% salaire_net = DocLine.where(category: :salaire_net_paye).pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
+<%= column_chart [
+                  {name: "Salaire net", data: salaire_net},
+                  {name: "Impôt sur le revenu", data: impots}
+                ],
+                stacked: true,
+                prefix: "€",
+                thousands: " ",
+                round: 2,
+                library: { animation: { easing: 'easeInOutQuart'}},
+                colors: ['#4D54E1','#211d43'], height: "200px"
+               %>
+

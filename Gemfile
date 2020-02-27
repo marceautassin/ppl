@@ -16,7 +16,11 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
+gem 'faker'
 gem 'pg_search', '~> 2.3.0'
+gem 'chartkick'
+gem 'highcharts-rails'
+gem 'groupdate'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
@@ -30,5 +34,4 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'dotenv-rails'
 end

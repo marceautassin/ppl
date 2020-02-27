@@ -1,5 +1,7 @@
-import "bootstrap";
+require("chartkick")
+require("chart.js")
 
+import "bootstrap";
 import { initSelect2 } from '../plugins/init_select2';
 
 initSelect2();

@@ -1,0 +1,9 @@
+<%= line_chart DocLine.where(category: :salaire_net_paye).pluck(:data_entry_period, :amount),
+              library: { animation: { easing: 'easeInOutQuart'}},
+              colors: ["#4D54E1", "#F9D132"],
+              prefix: "€",
+              thousands: " ",
+              round: 2,
+              download: true,
+              min: 3000, height: "200px" %>
+

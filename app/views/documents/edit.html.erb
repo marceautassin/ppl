@@ -1,0 +1,14 @@
+<h1>Confirm ta shitty shit</h1>
+<%= simple_form_for @document do |f| %>
+  Name: <%= f.text_field :name %>
+  <% @document.doc_lines.each do |doc_line| %>
+    <%= f.fields_for :doc_lines, doc_line do |d| %>
+      <p>
+        <%= d.input :category, placeholder: doc_line.category, input_html: {disabled: "disabled"}, label: false %>
+        <%= d.input_field :amount %>
+
+      </p>
+    <% end %>
+  <% end %>
+  <%= f.submit 'Valider les informations' %>
+<% end %>

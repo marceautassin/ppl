@@ -1,0 +1,86 @@
+.cards{
+  display:grid;
+  grid-template-columns: repeat( auto-fill, minmax(12rem, 1fr) );
+  grid-gap: 4rem;
+  p{
+      color: #151515;
+      font-size: 18px;
+  }
+}
+
+.card{
+  border: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 16em;
+  border-radius: 20px;
+  -webkit-transform: translate3d(0, 0, 0);
+  --background: #F9D132;
+  --text:white;
+  position: relative;
+  border: 1px solid #f7f7f7;
+  .multi-button{
+    opacity: 0;
+  }
+  &:hover{
+    border: 1px solid rgba(249,209,50,0.3);
+    .card-body {
+      opacity: 1;
+      background: rgba(255,255,250,0.95);
+      box-shadow:  0px 0px 1px rgba(249,209,50,0.2);
+    }
+    .multi-button{
+      opacity: 1;
+    }
+  }
+  &:hover .multi-button, .multi-button:focus-within { //Hover or a button inside is focused
+    width:10rem;
+    height:10rem;
+  }
+}
+
+.card-body{
+  transition: .5s all;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #211d43;
+  opacity: 0;
+  p{
+    color: #b7b3a5;
+  }
+}
+
+.section {
+  margin: 2rem;
+  padding:4rem;
+  padding-top:1rem;
+  background-color: $white;
+  border-radius: 20px;
+}
+
+.entete{
+  padding: 2rem 0;
+  border-bottom: 1px solid #fbfbfb;
+  margin-bottom: 4rem;
+}
+
+@media(max-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
