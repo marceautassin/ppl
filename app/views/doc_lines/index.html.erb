@@ -4,8 +4,8 @@
   <div class="d-flex justify-content-center">
     <div class="grid m-3 w-75">
       <div class="row">
-        <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Inscrit(e) depuis", value: '6 mois'} %></div>
-        <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Fiches de paies', value: Document.count} %></div>
+        <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Fiches de paies', value: Document.count} %></div>
+        <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "R.T.T restant", value: DocLine.where(category: :rtt).last.amount.to_i} %></div>
         <div class="col-6 col-md-4 col-sm-12 pr-0 pl-2 third"><%= render 'shared/cards_dash', {img: 'credit_card.png',title: 'Revenu total', value: DocLine.where(category: :salaire_net_paye).sum(:amount).round.to_s.reverse.gsub(/...(?=.)/,'\& ').reverse + ' €'}%></div>
       </div>
       <!-- Stack the columns on mobile by making one full-width and the other half-width -->
