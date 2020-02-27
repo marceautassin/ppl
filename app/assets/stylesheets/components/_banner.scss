@@ -1,0 +1,38 @@
+
+.home_video {
+ width: 100vw;
+ height: 100vh;
+ position: absolute;
+ display: flex;
+ justify-content: center;
+ object-fit: cover;
+ top: 0;
+ z-index: -2;
+}
+
+.home-video-wrapper {
+  height: 95vh;
+  display: flex;
+  background-size: cover;
+}
+
+.home {
+  // margin-top: 3rem;
+  margin-left: 5rem;
+}
+
+h1.home {
+  margin-top: 5rem;
+  color: dark;
+  font-size: 40px;
+
+  // font-weight: bold;
+}
+
+p.home {
+  color: dark;
+  font-size: 25px;
+  opacity: 0.8;
+}
+
+
