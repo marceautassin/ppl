@@ -48,6 +48,9 @@
   width: 100%;
   color: #211d43;
   opacity: 0;
+  a{
+  outline: 0;
+  }
   p{
     color: #b7b3a5;
   }
@@ -61,10 +64,31 @@
   border-radius: 20px;
 }
 
+.section-show {
+  width:70% ;
+  margin: 2rem;
+  padding:4rem;
+  padding-top:1rem;
+  background-color: $white;
+  border-radius: 20px;
+}
+
 .entete{
   padding: 2rem 0;
   border-bottom: 1px solid #fbfbfb;
   margin-bottom: 4rem;
+}
+.document-show{
+  margin: 2rem;
+  padding:4rem;
+  padding-top:1rem;
+  background-color: $white;
+  border-radius: 20px;
+  width: 50%;
+  img{
+    width: 100%;
+
+  }
 }
 
 @media(max-width: 992px) {
