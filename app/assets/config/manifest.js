@@ -1,4 +1,4 @@
 // = link_tree ../images
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .css
- //= link banner_movie.mp4
+ //= link banner.mp4
