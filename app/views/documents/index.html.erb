@@ -83,9 +83,10 @@
         <% group[1].each do |document| %>
           <div class="card" style="background-image: url('<%= cl_image_path(document.photo.key, format: :jpg) %>');">
             <div class="multi-button">
-              <a href="#" class="fas fa-pen"></a>
-              <a href="#" class="fas fa-share-alt"></a>
-              <a href="#" class="fas fa-trash"></a>
+              <!-- <a href="<%#= edit_document_path(document) %>" class="fas fa-pen"></a> -->
+              <a href="mailto:<%= current_user.email %>" class="fas fa-share-alt"></a>
+              <a href="<%= cl_image_path(document.photo.key) %>" class="fas fa-print" target="_blank"></a>
+              <!-- <a href= "<%#= document_path(document) %>" data-confirm="Are you sure?" data-method="delete" class="fas fa-trash"></a> -->
             </div>
             <div class="card-body">
               <h5 class="card-text pt-5 pb-4"><%= document.name %></h5>
@@ -98,4 +99,3 @@
     </div>
   <% end %>
 </div>
-
