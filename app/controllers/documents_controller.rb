@@ -22,7 +22,6 @@ class DocumentsController < ApplicationController
     @document.user = current_user
 
     if @document.save
-      # flash[:notice] = 'Votre bulletin a été sauvegardé.'
       redirect_to edit_document_path(@document)
     else
       render :new
@@ -31,6 +30,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    # OCR methode
     ocr = {:salaire_brut=>"5083.33",
       :salaire_net_paye=>"3868.84",
       :impot_revenu=>"590.75",
@@ -42,8 +42,8 @@ class DocumentsController < ApplicationController
       dl.data_entry_period = Date.new(@document.year, @document.month, 1)
       dl.document = @document
       dl.save!
+      flash[:notice] = 'Votre bulletin a été sauvegardé.'
     end
-    #OCR methode
   end
 
   def update
@@ -57,7 +57,9 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document = Document.find(document_params)
+    @document = Document.find(params[:id])
+    @document.destroy
+    redirect_to documents_path
   end
 
 
