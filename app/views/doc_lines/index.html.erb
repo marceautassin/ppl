@@ -37,7 +37,6 @@
     <div class="sidebar m-3 salnet w-35 p-3">
       <div class="text-center">
         <h5>Avant la retraite:</h5>
-        <br>
         <div class="w-100 flex-column align-items-center"  style="position: relative;left: 15%;margin-top: 5%;">
           <div><%= render "doc_lines/graphs/retraite" %></div>
           <h5 style="line-height: 12px; position: absolute;top: 67px;left:41px"><%=  (480 * 30 - Document.count * 30).to_s.reverse.gsub(/...(?=.)/,'\& ').reverse %><br><span style="font-size:11px;">jours</span> </h5>
