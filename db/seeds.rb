@@ -1,5 +1,8 @@
 puts 'Création des fiches de paies...'
   user = User.new(
+    first_name: 'Bertrand',
+    last_name: 'Bussac',
+    social_security_number: '188091212365476',
     email: 'bertrandbussac@gmail.com',
     password: 'azerty'
   )
