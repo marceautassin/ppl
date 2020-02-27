@@ -1,7 +1,11 @@
 class DocumentsController < ApplicationController
 
   def index
-    @documents = Document.all
+    if params[:query].present?
+      @documents = Document.global_search(params[:query])
+    else
+      @documents = Document.all
+    end
   end
 
   def show

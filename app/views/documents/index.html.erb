@@ -1,3 +1,4 @@
+
 <% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
 
 <div class="container">
@@ -34,6 +35,22 @@
 
 
   <h1 class="m-5">Mes documents</h1>
+
+  <div class="filtre p-1 text-center m-5 sticky-top shadow-lg" style="top:15vh;">
+    <%= form_tag documents_path, method: :get do %>
+      <div class="d-flex justify-content-center align-items-center mx-5">
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Année, mois, entreprise, etc..."
+        %>
+        <%= button_tag type: 'submit', class: "btn btn-primary m-1 text-white" do %>
+          <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
 
   <% groups.each do |group| %>
     <div class="section">
