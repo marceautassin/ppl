@@ -39,6 +39,7 @@ class DocumentsController < ApplicationController
       :rtt=>"2.88"}
     ocr.each do |key, value|
       dl = DocLine.new(category: key, amount: value.to_f)
+      dl.data_entry_period = Date.new(@document.year, @document.month, 1)
       dl.document = @document
       dl.save!
     end
