@@ -1,12 +1,111 @@
-<div class="container">
-  <div class="row">
-    <col-md-4>
-      <div class="text-center"><h1>Pages#home </h1>
-        <p>Find me in app/views/pages/home.html.erb</p>
-      </div>
+<div>
+<div class="home-video-wrapper rounded">
+  <%= video_tag "banner.mp4", controls:true, autoplay: true, loop: :loop, muted: :muted, poster:'poster_photo', class:'home_video' %>
+  <div class="d-flex" style="height: 80vh; width: 100vw; margin-top: 10px">
+    <div>
+      <h1 class="home">Administrophobe ?</h1>
+      <p class="home">Simplifier le suivi de votre vie professionnelle</p>
+    </div>
+    <div class="form" >
+      <% if !current_user %>
+        <%= simple_form_for(@user, url: session_path(@user)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" },
+                        label: "Mot de passe"  %>
+          </div>
 
-    </col-md-4>
+          <div class="form-actions">
+            <%= f.button :submit, "Je me connecte", class:"btn btn-success mb-3"%>
+          </div>
+        <% end %>
+        <%= link_to "Je m'inscris", new_user_registration_path, class:"btn btn-secondary btn-sm mb-3" %>
+      <% end %>
+      <% if current_user %>
+        <%= link_to 'log_out', destroy_user_session_path, method: :delete, class: "btn btn-light"  %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+
+<div class="container">
+
+</div >
+  <h3 class="text-center p-4">Stockage Sécurisé - Tableau de Bord - Simulations</h3>
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card" style="width: 18rem; ">
+          <%= image_tag "pc_cool.svg", class:"card-img-top" %>
+          <div class="card-body">
+            <h1 class="card-text text-center">C'est tellement simple</h1>
+            <p class="card-text text-center">de récupérer, stocker et protéger mes données professionnelles.</p>
+          </div>
+          </div>
+    </div>
+
+    <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+          <%= image_tag "progress_data.svg", class:"card-img-top", crop: :fill %>
+          <div class="card-body">
+          <h1 class="card-text text-center">d'être connecté</h1>
+          <p class="card-text text-center">aux dernières mises à jour de mon tableau de bord personnalisé.</p>
+          </div>
+      </div>
+    </div>
+
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+          <%= image_tag "moment_to_relax.svg", class:"card-img-top", crop: :fill %>
+          <div class="card-body">
+          <h1 class="card-text text-center">en toute confiance</h1>
+          <p class="card-text text-center">sécurisé et confidentiel, partout, tout le temps.</p>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

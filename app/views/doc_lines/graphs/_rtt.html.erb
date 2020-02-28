@@ -1,3 +1,3 @@
 <p>Nombre de jours R.T.T restants</p>
 <% last_doc = DocLine.where(document_id: Document.last).select{|line| line.category == 'rtt'} %>
-<%= pie_chart last_doc.pluck(:category, :amount), library: { animation: { easing: 'easeOutQuad'}}, donut: true, colors: ['#F9D132'], legend: false, label: 'R.T.T restants' %>
+<%= pie_chart last_doc.pluck(:category, :amount), library: { animation: { easing: 'easeOutQuad'}}, donut: true, colors: ['#F9D132'], legend: false, label: 'R.T.T restants', defer: true %>
