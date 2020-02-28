@@ -92,7 +92,7 @@
                   <div>
                     <h5 class="card-text pt-5 pb-4"><%= document.name %></h5>
                     <p><i class="pr-4 far fa-building"></i><%= document.entreprise %></p>
-                    <p><i class="pr-4 fas fa-euro-sign"></i><%= DocLine.salaire_brut.find_by(document: document).amount.round(2) %></p>
+                    <p><i class="pr-4 fas fa-euro-sign"></i><%= DocLine.salaire_net_paye.find_by(document: document).amount.round(2) %></p>
                   </div>
                 <% end %>
               </div>
