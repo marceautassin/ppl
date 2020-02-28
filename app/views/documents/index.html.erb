@@ -30,13 +30,16 @@
             </div>
             <%= form.input :photo, as: :file, label: false, class: 'btn btn-success', style: 'margin-top: 10px;' %>
 
-            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5'%>
+            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5', onclick:'cursor_wait();'%>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-    <div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-labelledby="Ajouter un bulletin" aria-hidden="true">
+  <div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-labelledby="Ajouter un bulletin" aria-hidden="true">
+            <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Chargement...</span>
+        </div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -128,3 +131,9 @@
   <% end %>
 </div>
 
+<script>
+  const cursor_wait = () => {
+   setTimeout(document.body.style.cursor = 'wait', 4000);
+  }
+
+</script>
