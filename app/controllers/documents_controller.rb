@@ -1,3 +1,4 @@
+require 'open-uri'
 class DocumentsController < ApplicationController
 
   def index
@@ -34,13 +35,19 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
-    # OCR methode
-    ocr = {:salaire_brut=>"5083.33",
-      :salaire_net_paye=>"3868.84",
-      :impot_revenu=>"590.75",
-      :conge_n_1=>"24.0",
-      :conge_n=>"2.08",
-      :rtt=>"2.88"}
+    #path =  request.base_url + Rails.application.routes.url_helpers.rails_blob_path(@document.photo, only_path: true)
+    #le probleme est que j'ai pas la bonne url , et je vois clairement pas !!!!!!!!!!
+    #path = ActionController::Base.helpers.cl_image_url(@document.photo)
+    #
+    result = Cloudinary::Search.max_results(1).execute
+    pdf = URI.open(result["resources"][0]["url"])
+    ocr = @document.construction_hash(pdf)
+    # ocr = {:salaire_brut=>"5083.33",
+    #   :salaire_net_paye=>"3868.84",
+    #   :impot_revenu=>"590.75",
+    #   :conge_n_1=>"24.0",
+    #   :conge_n=>"2.08",
+    #   :rtt=>"2.88"}
     ocr.each do |key, value|
       dl = DocLine.new(category: key, amount: value.to_f)
       dl.data_entry_period = Date.new(@document.year, @document.month, 1)
