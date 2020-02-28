@@ -1,8 +1,8 @@
-<div class="container">
-  <h1>Dashboard</h1>
+<div class="container dashboard">
+  <h2 class="mt-4">Dashboard</h2>
   <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
   <div class="d-flex justify-content-center">
-    <div class="grid m-3 w-75">
+    <div class="grid m-2 w-75">
       <div class="row">
         <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Fiches de paies', value: Document.count} %></div>
         <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "R.T.T restant", value: DocLine.where(category: :rtt).last.amount.to_i} %></div>
@@ -10,7 +10,7 @@
       </div>
       <!-- Stack the columns on mobile by making one full-width and the other half-width -->
       <div class="row">
-        <div class="col-12 col-md-12 p-4 my-4 salnet">
+        <div class="col-12 col-md-12 p-4 my-3 salnet">
           <h5>Évolution de ton salaire net</h5>
           <div class="mt-2"><%= render "doc_lines/graphs/remnet_an" %></div>
         </div>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="sidebar m-3 salnet w-35 p-3">
+    <div class="sidebar m-2 ml-3 salnet w-35 p-3">
       <div class="text-center">
         <h5>Avant la retraite:</h5>
         <div class="w-100 flex-column align-items-center"  style="position: relative;left: 15%;margin-top: 5%;">

@@ -1,33 +1,36 @@
-
-<% groups = @documents.sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
+<% groups = @documents.where(user: current_user).sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
 <% salnet = DocLine.where(category: :salaire_net_paye ).group_by{ |m| m.data_entry_period.year } %>
 
 <div class="container">
   <div class="button-add">
-    <i class="fas fa-plus-circle", id="buttonModal", data-toggle="modal", aria-haspopup= "true", aria-expanded= "false", data-target="#add_document"></i>
+    <i class="fas fa-plus", id="buttonModal", data-toggle="modal", aria-haspopup= "true", aria-expanded= "false", data-target="#add_document"></i>
   </div>
+
   <div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-labelledby="Ajouter un bulletin" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter un bulletin</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+      <div class="modal-content text-center">
+        <div class="d-flex justify-content-between align-items-center p-2">
+          <button type="button" class="close w-100" data-dismiss="modal" aria-label="Close" style="text-align: right;">
+            <span aria-hidden="true">╳</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
           <%= simple_form_for (Document.new) do |form| %>
-            <%= form.input :photo, as: :file %>
-            <div class="row">
+            <div class="text-center">
+              <h5 id="exampleModalLabel">Ajouter un bulletin</h5>
+              <%= image_tag 'files.svg', alt: "alttext", style: 'width: 90%; padding: 10%;' %>
+            </div>
+            <div class="row my-2 mb-5">
               <div class="col">
-                <%= form.input :year, as: :date,  discard_day: true, discard_month: true %>
+                <%= form.input :month, as: :date,  discard_day: true, discard_year: true, label: 'Mois'  %>
               </div>
               <div class="col">
-                <%= form.input :month, as: :date,  discard_day: true, discard_year: true  %>
+                <%= form.input :year, as: :date,  discard_day: true, discard_month: true, label: 'Année' %>
               </div>
             </div>
+            <%= form.input :photo, as: :file, label: false, class: 'btn btn-success', style: 'margin-top: 10px;' %>
 
-            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2'%>
+            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5'%>
         <% end %>
         </div>
       </div>
@@ -54,29 +57,21 @@
               </div>
             </div>
 
-            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2'%>
-        <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h2 class="mt-4">Mes documents</h2>
 
-  <h1 class="m-5">Mes documents</h1>
-
-  <div class="filtre p-1 text-center m-5 sticky-top shadow-lg" style="top:15vh;">
+  <div class="text-center">
     <%= form_tag documents_path, method: :get do %>
-      <div class="d-flex justify-content-center align-items-center mx-5">
+      <div class="d-flex justify-content-center align-items-center" style="position: relative;">
+        <%= link_to 'Tout voir',  documents_path ,class:'all btn btn-warning m-1 text-white' %>
         <%= text_field_tag :query,
         params[:query],
         class: "form-control",
-        placeholder: "Année, mois, entreprise, etc..."
+        placeholder: "Recherchez par année, mois, entreprise, etc..."
         %>
-        <%= button_tag type: 'submit', class: "btn btn-primary m-1 text-white" do %>
+        <%= button_tag type: 'submit', class: "bg-transparent p-1 text-warning loupe" do %>
           <i class="fa fa-search" aria-hidden="true"></i>
         <% end %>
-        <%= link_to '😏',  documents_path ,class:'btn btn-primary m-1 text-white' %>
       </div>
-
     <% end %>
   </div>
 

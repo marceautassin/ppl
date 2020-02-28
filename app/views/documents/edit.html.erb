@@ -1,14 +1,24 @@
-<h1>Confirm ta shitty shit</h1>
-<%= simple_form_for @document do |f| %>
-  Name: <%= f.text_field :name %>
-  <% @document.doc_lines.each do |doc_line| %>
-    <%= f.fields_for :doc_lines, doc_line do |d| %>
-      <p>
-        <%= d.input :category, placeholder: doc_line.category, input_html: {disabled: "disabled"}, label: false %>
-        <%= d.input_field :amount %>
+<div class="container">
+  <h2 class="my-4">Confirm ta shitty shit</h2>
+  <div class="d-flex salnet">
+    <div class="w-75 pr-3">
+      <%= cl_image_tag(@document.photo.key, format: :jpg, style: 'width: 90%;order: 1px solid #cbcbce5e; background:white;padding: 5%;') %>
+    </div>
+    <div class="text-center p-3 bg-white" style="border-radius: 20px; box-shadow: 0px 0px 10px #4d54e129;">
+      <p style="font-size: 12px;">Merci de bien vérifier vos informations</p>
+      <%= simple_form_for @document do |f| %>
+        <%= f.submit 'Valider les informations', class: 'btn btn-success text-white w-100' %>
+        <p class="my-3">Bulletin du mois de : <%= f.text_field :name, class: 'amount' %></p>
+        <% @document.doc_lines.each do |doc_line| %>
+          <%= f.fields_for :doc_lines, doc_line do |d| %>
+            <p>
+              <%= d.input :category, placeholder: doc_line.category.capitalize.gsub('_', ' '), input_html: {disabled: "disabled"}, label: false %>
+              <%= d.input_field :amount, class: 'amount' %>
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
 
-      </p>
-    <% end %>
-  <% end %>
-  <%= f.submit 'Valider les informations' %>
-<% end %>
+    </div>
+  </div>
+</div>
