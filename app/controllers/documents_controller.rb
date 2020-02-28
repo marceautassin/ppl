@@ -10,6 +10,10 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @document }
+      end
   end
 
   def new
