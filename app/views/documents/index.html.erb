@@ -30,7 +30,7 @@
             </div>
             <%= form.input :photo, as: :file, label: false, class: 'btn btn-success', style: 'margin-top: 10px;' %>
 
-            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5'%>
+            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5', onclick:'cursor_wait();'%>
           <% end %>
         </div>
       </div>
@@ -150,3 +150,9 @@
   <% end %>
 </div>
 
+<script>
+  const cursor_wait = () => {
+   setTimeout(document.body.style.cursor = 'wait', 4000);
+  }
+
+</script>

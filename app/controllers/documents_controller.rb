@@ -35,8 +35,10 @@ class DocumentsController < ApplicationController
     #le probleme est que j'ai pas la bonne url , et je vois clairement pas !!!!!!!!!!
     #path = ActionController::Base.helpers.cl_image_url(@document.photo)
     #
+    sleep(5)
     result = Cloudinary::Search.max_results(1).execute
     pdf = URI.open(result["resources"][0]["url"])
+    ocr = {}
     ocr = @document.construction_hash(pdf)
     # ocr = {:salaire_brut=>"5083.33",
     #   :salaire_net_paye=>"3868.84",
