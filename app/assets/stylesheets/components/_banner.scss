@@ -1,7 +1,7 @@
 
 .home_video {
  width: 100vw;
- height: 100vh;
+ height: calc(100% - 18px);
  position: absolute;
  display: flex;
  justify-content: center;
@@ -11,28 +11,32 @@
 }
 
 .home-video-wrapper {
-  height: 95vh;
+  height: 90vh;
   display: flex;
   background-size: cover;
 }
 
 .home {
-  // margin-top: 3rem;
-  margin-left: 5rem;
+  margin-left: 300px;
+  margin-right: 50px;
 }
 
 h1.home {
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: dark;
-  font-size: 40px;
+  font-size: 3rem;
+  opacity: 0.8;
 
-  // font-weight: bold;
 }
 
 p.home {
   color: dark;
-  font-size: 25px;
+  font-size: 2rem;
   opacity: 0.8;
+}
+.form {
+  margin-top: 1rem;
+  margin-left: 5rem;
 }
 
 
