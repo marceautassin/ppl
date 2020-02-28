@@ -29,7 +29,7 @@
 
       <% end %>
       <% if current_user %>
-        <%= link_to 'Je me déconnecte', destroy_user_session_path, method: :delete, class: "btn btn-light"  %>
+        <%= link_to 'Je me déconnecte', destroy_user_session_path, method: :destroy, class: "btn btn-light"  %>
       <% end %>
     </div>
   </div>
