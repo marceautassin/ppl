@@ -1,3 +1,30 @@
-<h1>Documents#show</h1>
-<p>Find me in app/views/documents/show.html.erb</p>
+<h1 class="text-center mt-5  "><%= @document.name %></h1>
 
+<div class="d-flex">
+  <div class="document-show">
+    <%= cl_image_tag(@document.photo.key , format: :jpg) %>
+
+    <!-- <iframe src="<%#= cl_image_tag(@document.photo.key) %>" height="200" width="300"></iframe> -->
+  </div>
+  <div class="document-show">
+    <p>
+      <strong>Salaire brut:</strong> <%= DocLine.salaire_brut.find_by(document: @document).amount.round(2) %> €
+    </p>
+    <p>
+      <strong>Salaire net:</strong> <%= DocLine.salaire_net_paye.find_by(document: @document).amount.round(2) %> €
+    </p>
+    <p>
+      <strong>Impot sur le revenu:</strong> <%= DocLine.impot_revenu.find_by(document: @document).amount.round(2) %> €
+    </p>
+    <p>
+      <strong>Congés N-1:</strong> <%= DocLine.conge_n_1.find_by(document: @document).amount.truncate %> jrs
+    </p>
+    <p>
+      <strong>Congés N:</strong> <%= DocLine.conge_n.find_by(document: @document).amount.truncate %> jrs
+    </p>
+    <p>
+      <strong>RTT:</strong>RTT: <%= DocLine.rtt.find_by(document: @document).amount.truncate %> jrs
+    </p>
+  </div>
+
+</div>
