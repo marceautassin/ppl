@@ -51,14 +51,13 @@ class DocumentsController < ApplicationController
       dl.data_entry_period = Date.new(@document.year, @document.month, 1)
       dl.document = @document
       dl.save!
-      flash[:notice] = 'Votre bulletin a été sauvegardé.'
     end
   end
 
   def update
     @document = Document.find(params[:id])
     if @document.update_attributes(params_documents)
-      redirect_to @document, notice: 'Successfully updated document'
+      redirect_to documents_path, notice: 'Votre document a bien été sauvegardé'
     else
       render :edit
     end
