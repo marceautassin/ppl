@@ -57,6 +57,10 @@
               </div>
             </div>
           <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <h2 class="mt-4">Mes documents</h2>
 
@@ -109,7 +113,7 @@
                 <a href="<%= cl_image_path(document.photo.key) %>" class="fas fa-print" target="_blank"></a>
               </div>
               <div class="card-body">
-                <%= link_to document_path(document) do %>
+                <%= link_to document_path(document), data: { toggle: 'modal', target: '#preview'} do %>
                   <div>
                     <h5 class="card-text pt-5 pb-4"><%= document.name %></h5>
                     <p><i class="pr-4 far fa-building"></i><%= document.entreprise %></p>
@@ -123,3 +127,4 @@
     </div>
   <% end %>
 </div>
+

@@ -17,13 +17,13 @@
       <strong>Impot sur le revenu:</strong> <%= DocLine.impot_revenu.find_by(document: @document).amount.round(2) %> €
     </p>
     <p>
-      <strong>Congés N-1:</strong> <%= DocLine.conge_n_1.find_by(document: @document).amount.truncate %> jrs
+      <strong>Congés N-1:</strong> <%= DocLine.conge_n_1.find_by(document: @document).amount.truncate %> jour(s)
     </p>
     <p>
-      <strong>Congés N:</strong> <%= DocLine.conge_n.find_by(document: @document).amount.truncate %> jrs
+      <strong>Congés N:</strong> <%= DocLine.conge_n.find_by(document: @document).amount.truncate %> jour(s)
     </p>
     <p>
-      <strong>RTT:</strong>RTT: <%= DocLine.rtt.find_by(document: @document).amount.truncate %> jrs
+      <strong>RTT:</strong><%= DocLine.rtt.find_by(document: @document).amount.truncate %> jour(s)
     </p>
   </div>
 
