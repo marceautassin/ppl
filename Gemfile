@@ -21,7 +21,8 @@ gem 'pg_search', '~> 2.3.0'
 gem 'chartkick'
 gem 'highcharts-rails'
 gem 'groupdate'
-
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :development do

@@ -1,0 +1,40 @@
+// document#index
+
+input#query {
+    margin: 5%;
+    padding-bottom: 40px;
+    background-color: transparent;
+    border:none;
+    border-radius:0;
+    border-bottom: 1px solid #d4d8dc;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 200;
+    &::placeholder {
+      color: #cacaca;
+      font-weight: 200;
+    }
+}
+
+#query:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background: none;
+    border: none;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.form-group{
+  margin-bottom: 0;
+}
+
+.amount{
+  padding: 12px;
+  border-radius: 30px;
+  border: 1px solid silver;
+  width: 100%;
+}

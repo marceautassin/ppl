@@ -17,7 +17,26 @@ a:hover{
 }
 
 
-#buttonModal{
-  font-size: 3rem;
-  color: $primary;
+i#buttonModal{
+  font-size: 35px;
+  padding: 12px;
+  color: #fff;
+  background-color: $warning;
+  border-radius:50%;
+  box-shadow: 0px 0px 10px #211d435c;
+  position: fixed;
+  bottom: 30px;
+}
+.loupe {
+  position: absolute;
+  border: none;
+  right:67px;
+  top: 50px;
+}
+
+.all{
+  position: absolute;
+  left: 53px;
+  top: 35px;
+  padding: 14px;
 }
