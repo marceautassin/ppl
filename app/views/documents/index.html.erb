@@ -30,32 +30,7 @@
             </div>
             <%= form.input :photo, as: :file, label: false, class: 'btn btn-success', style: 'margin-top: 10px;' %>
 
-            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5'%>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-    <div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-labelledby="Ajouter un bulletin" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter un bulletin</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <%= simple_form_for (Document.new) do |form| %>
-            <%= form.input :photo, as: :file %>
-            <div class="row">
-              <div class="col">
-                <%= form.input :year, as: :date,  discard_day: true, discard_month: true %>
-              </div>
-              <div class="col">
-                <%= form.input :month, as: :date,  discard_day: true, discard_year: true  %>
-              </div>
-            </div>
+            <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5', onclick:'cursor_wait();'%>
           <% end %>
         </div>
       </div>
@@ -113,7 +88,7 @@
                 <a href="<%= cl_image_path(document.photo.key) %>" class="fas fa-print" target="_blank"></a>
               </div>
               <div class="card-body">
-                <%= link_to document_path(document), data: { toggle: 'modal', target: '#preview'} do %>
+                <%= link_to document_path(document), data: { toggle: 'modal', target: "#document-#{document.id}"} do %>
                   <div>
                     <h5 class="card-text pt-5 pb-4"><%= document.name %></h5>
                     <p><i class="pr-4 far fa-building"></i><%= document.entreprise %></p>
@@ -122,9 +97,62 @@
                 <% end %>
               </div>
             </div>
+
+             <!-- Modal -->
+            <div class="modal fade" id="document-<%= document.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content preview">
+                  <div class="modal-header" style="border: none;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">╳</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h1 class="text-center"><%= document.name %></h1>
+
+                    <div class="d-flex" style="position:relative">
+                      <div class="w-100 pr-2">
+                        <%= cl_image_tag(document.photo.key , format: :jpg) %>
+                      </div>
+                      <div class="document-show p-2 m-0"  style="background-color: #F9D132; position: fixed; text-align: center;right: 40px;">
+                        <h6>Informations</h6>
+                        <p>
+                          <strong>Salaire brut:</strong> <%= DocLine.salaire_brut.find_by(document: document).amount.round(2) %> €
+                        </p>
+                        <p>
+                          <strong>Salaire net:</strong> <%= DocLine.salaire_net_paye.find_by(document: document).amount.round(2) %> €
+                        </p>
+                        <p>
+                          <strong>Impot sur le revenu:</strong> <%= DocLine.impot_revenu.find_by(document: document).amount.round(2) %> €
+                        </p>
+                        <p>
+                          <strong>Congés N-1:</strong> <%= DocLine.conge_n_1.find_by(document: document).amount.truncate %> jour(s)
+                        </p>
+                        <p>
+                          <strong>Congés N:</strong> <%= DocLine.conge_n.find_by(document: document).amount.truncate %> jour(s)
+                        </p>
+                        <p>
+                          <strong>RTT:</strong><%= DocLine.rtt.find_by(document: document).amount.truncate %> jour(s)
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
         <% end %>
       </div>
     </div>
   <% end %>
 </div>
 
+<script>
+  const cursor_wait = () => {
+   setTimeout(document.body.style.cursor = 'wait', 4000);
+  }
+
+</script>
