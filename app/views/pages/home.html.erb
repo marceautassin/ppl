@@ -21,13 +21,13 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Je me connecte", class:"btn btn-success mb-3"%>
+            <%= f.button :submit, "Je me connecte", class:"btn btn-secondary btn-sm mb-3"%>
           </div>
         <% end %>
-        <%= link_to "Je m'inscris", new_user_registration_path, class:"btn btn-secondary btn-sm mb-3" %>
+        <%= link_to "Je m'inscris gratuitement", new_user_registration_path, class:"btn btn-success mb-3btn btn-secondary btn-sm mb-3" %>
       <% end %>
       <% if current_user %>
-        <%= link_to 'log_out', destroy_user_session_path, method: :delete, class: "btn btn-light"  %>
+        <%= link_to 'Je me déconnecte', destroy_user_session_path, method: :delete, class: "btn btn-light"  %>
       <% end %>
     </div>
   </div>
