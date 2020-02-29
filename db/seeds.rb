@@ -1,14 +1,14 @@
 puts 'Création des fiches de paies...'
   user = User.new(
-    first_name: 'Bertrand',
-    last_name: 'Bussac',
+    first_name: 'Thomas',
+    last_name: 'Thevenoud',
     social_security_number: '188091212365476',
-    email: 'bertrandbussac@gmail.com',
+    email: 'thomas.thevenoud@escroc.fr',
     password: 'azerty'
   )
   user.save!
 
-  period = (Date.new(2018, 8)..Date.new(2020, 2)).select {|d| d.day == 1}
+  period = (Date.new(2015, 8)..Date.new(2020, 2)).select {|d| d.day == 1}
 
   period.each do |date|
 
