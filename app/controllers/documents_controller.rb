@@ -35,7 +35,7 @@ class DocumentsController < ApplicationController
     #le probleme est que j'ai pas la bonne url , et je vois clairement pas !!!!!!!!!!
     #path = ActionController::Base.helpers.cl_image_url(@document.photo)
     #
-    sleep(5)
+    sleep(3)
     result = Cloudinary::Search.max_results(1).execute
     pdf = URI.open(result["resources"][0]["url"])
     ocr = {}
@@ -45,8 +45,22 @@ class DocumentsController < ApplicationController
     #   :impot_revenu=>"590.75",
     #   :conge_n_1=>"24.0",
     #   :conge_n=>"2.08",
-    #   :rtt=>"2.88"}
-    ocr.each do |key, value|
+    #   :rtt=>"2.88"
+    #   :year=>2019
+    #   :month=>March mettre en chiifre
+    #   :siret=> "478558698525"
+    @document.year = ocr[:document_infos][:year]
+    @document.month = ocr[:document_infos][:month]
+    @document.siret = ocr[:document_infos][:siret]
+    url = "https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/#{@document.siret}"
+    document_serialized = open(url).read
+    document_jason = JSON.parse(document_serialized)
+    @document.entreprise = document_jason["etablissement"]["unite_legale"]["denomination"]
+    @document.save!
+
+
+
+    ocr[:doc_lines].each do |key, value|
       dl = DocLine.new(category: key, amount: value.to_f)
       dl.data_entry_period = Date.new(@document.year, @document.month, 1)
       dl.document = @document
