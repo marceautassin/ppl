@@ -2,6 +2,7 @@ require 'csv'
 
 class Document < ApplicationRecord
   belongs_to :user
+  validates :photo, presence: true
   has_many :doc_lines, inverse_of: :document, dependent: :destroy
   has_one_attached :photo
 
