@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="my-4">Confirm ta shitty shit</h2>
+  <h2 class="my-4">Confirme ta fiche de paye</h2>
   <div class="d-flex salnet">
     <div class="w-75 pr-3">
       <%= cl_image_tag(@document.photo.key, format: :jpg, style: 'width: 90%;order: 1px solid #cbcbce5e; background:white;padding: 5%;') %>
@@ -9,6 +9,7 @@
       <%= simple_form_for @document do |f| %>
         <%= f.submit 'Valider les informations', class: 'btn btn-success text-white w-100' %>
         <p class="my-3">Bulletin du mois de : <%= f.text_field :name, class: 'amount' %></p>
+        <!-- ici un probleme d'ordre des doc_line ! a retravailler quentin 01/03 -->
         <% @document.doc_lines.each do |doc_line| %>
           <%= f.fields_for :doc_lines, doc_line do |d| %>
             <p>
