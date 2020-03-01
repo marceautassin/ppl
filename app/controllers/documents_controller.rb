@@ -18,8 +18,9 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
-    @document.name = "#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]} #{params[:document]["year(1i)"]}"
+    # @document = Document.new(year: params_documents["year(1i)"], month: params_documents["month(2i)"], photo: params_documents[:photo] )
+    @document = Document.new(photo: params_documents[:photo] )
+    # @document.name = "#{Date::MONTHNAMES[params[:document]["month(2i)"].to_i]} #{params[:document]["year(1i)"]}"
     @document.user = current_user
 
     if @document.save
@@ -31,10 +32,6 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
-    #path =  request.base_url + Rails.application.routes.url_helpers.rails_blob_path(@document.photo, only_path: true)
-    #le probleme est que j'ai pas la bonne url , et je vois clairement pas !!!!!!!!!!
-    #path = ActionController::Base.helpers.cl_image_url(@document.photo)
-    #
     sleep(3)
     result = Cloudinary::Search.max_results(1).execute
     pdf = URI.open(result["resources"][0]["url"])
@@ -47,7 +44,7 @@ class DocumentsController < ApplicationController
     #   :conge_n=>"2.08",
     #   :rtt=>"2.88"
     #   :year=>2019
-    #   :month=>March mettre en chiifre
+    #   :month=> (1..12)
     #   :siret=> "478558698525"
     @document.year = ocr[:document_infos][:year]
     @document.month = ocr[:document_infos][:month]
@@ -56,9 +53,8 @@ class DocumentsController < ApplicationController
     document_serialized = open(url).read
     document_jason = JSON.parse(document_serialized)
     @document.entreprise = document_jason["etablissement"]["unite_legale"]["denomination"]
+    @document.fabrique_le_name
     @document.save!
-
-
 
     ocr[:doc_lines].each do |key, value|
       dl = DocLine.new(category: key, amount: value.to_f)
@@ -88,6 +84,9 @@ class DocumentsController < ApplicationController
   private
 
   def params_documents
-    params.require(:document).permit(:photo, ["year(1i)"], ["month(2i)"], doc_lines_attributes: [:id, :name, :category, :amount] )
+    # params.require(:document).permit(:photo, ["year(1i)"], ["month(2i)"], doc_lines_attributes: [:id, :name, :category, :amount] )
+     params.require(:document).permit(:photo, doc_lines_attributes: [:id, :name, :category, :amount] )
   end
+
+
 end

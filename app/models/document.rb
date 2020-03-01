@@ -39,6 +39,11 @@ class Document < ApplicationRecord
     return ocr
   end
 
+  def fabrique_le_name
+    moiss = ['0', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+    return self.name = "#{moiss[month].capitalize} #{year}"
+  end
+
   private
 
     def traduire_mois(un_mois_en_string)
