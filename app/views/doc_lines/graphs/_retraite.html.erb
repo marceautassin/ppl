@@ -1,5 +1,5 @@
 <%= pie_chart [
-                ["Jours travaillés", Document.count * 30 ],
+                ["Jours travaillés", @documents.count * 30 ],
                 ["Retraite dans", 480 * 30 ],
               ],
               width: '150px',
