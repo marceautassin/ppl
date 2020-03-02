@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+
+
+<%= simple_form_for @doc_line, remote: true, method: :get, url: coco_path do |f| %>
+  <%= f.input :data_entry_period, as: :string,  input_html: { id: 'rangeDate', class: 'bg-light' } %>
+  <%= f.submit %>
+<% end %>
+<!-- <input type="text" id="rangeDate" placeholder="Filtrer selon une période de temps" data-remote="true">
+ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script>
+  $("#rangeDate").flatpickr({
+      mode: 'range',
+      dateFormat: "d-m-Y"
+  });
+
+
+  const input = document.querySelector("#rangeDate");
+  const input_date_range =  document.querySelector("#rangeDate").value.split(" to ");
+  const start_at = input_date_range[0];
+  const end_at = input_date_range[1];
+
+  // input.addEventListener("change", (event) => {
+  //   const input_date_range =  document.querySelector("#rangeDate").value.split(" to ");
+  //   const start_at = input_date_range[0];
+  //   const end_at = input_date_range[1];
+  //   console.log(event);
+  //   if (end_at !== undefined) {
+  //     // window.location = `${window.location.origin}/doc_lines_2?start_at=${start_at}&end_at=${end_at}`
+  //     fetch(`${window.location.origin}/doc_lines_2?start_at=${start_at}&end_at=${end_at}`).then((response) => {
+  //       // Do something once HTTP response is received
+  //       console.log(<%=  @coco  %>)
+  //     });
+
+  //   }
+  //   // fetch(`/doc_lines?start_at=${start_at}&end_at=${end_at}`)
+
+  // });
+  /*function SubmitData() {
+
+
+
+    const dataToPost = JSON.stringify({ methodParam: input_date_range });
+
+    $.ajax({
+        url : `/doc_lines?start_at=${start_at}&end_at=${end_at}`,
+        type : "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'JSON',
+        data: dataToPost,
+    });*/
+
+  //   console.log(dataToPost);
+  //   console.log(input_date_range);
+  // }
+
+
+
+  </script>

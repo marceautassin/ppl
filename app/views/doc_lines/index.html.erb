@@ -1,6 +1,7 @@
 <div class="container dashboard">
-  <h2 class="mt-4">Dashboard</h2>
+  <h2 class="mt-4">Tableau de bord</h2>
   <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+  <%= render 'doc_lines/filters' %>
   <div class="d-flex justify-content-center">
     <div class="grid m-2 w-75">
       <div class="row">
@@ -11,7 +12,6 @@
       <!-- Stack the columns on mobile by making one full-width and the other half-width -->
       <div class="row">
         <div class="col-12 col-md-12 p-4 my-3 salnet">
-          <h5>Évolution de ton salaire net</h5>
           <div class="mt-2"><%= render "doc_lines/graphs/remnet_an" %></div>
         </div>
       </div>
@@ -45,7 +45,7 @@
 
         <div class="info p-3">
           <h5><i class="far fa-user"></i></h5>
-          <p style="font-weight:italic;"><%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p style="font-weight:bold;"><%= current_user.first_name %> <%= current_user.last_name %></p>
           <p><%= current_user.email %></p>
           <p class="m-0" style="font-weight: 400;">N° de sécurité sociale :</p>
           <p><%= current_user.social_security_number %></p>
