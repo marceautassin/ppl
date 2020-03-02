@@ -45,16 +45,20 @@
           </div>
           <div class="cardd">
               <div class="face face1">
+                <%= link_to(simulations_path) do %>
                   <div class="content">
                       <%= image_tag("simu.svg")%>
                       <h3 >Simulations</h3>
                   </div>
               </div>
+              <% end %>
               <div class="face face2">
+                <%= link_to(simulations_path) do %>
                   <div class="content">
                       <h3 class="title mb-3">Retraite, Impôts, Formation</h3>
                   </div>
               </div>
+              <% end %>
           </div>
       </div>
   </div>
