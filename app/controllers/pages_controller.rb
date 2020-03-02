@@ -4,4 +4,11 @@ class PagesController < ApplicationController
   def home
     @user = User.new
   end
+
+  def welcome
+  end
+
+  def simulations
+  end
+
 end
