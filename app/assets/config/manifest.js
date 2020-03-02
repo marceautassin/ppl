@@ -2,3 +2,4 @@
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .css
  //= link banner.mp4
+  //= link application.css
