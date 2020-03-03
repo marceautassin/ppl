@@ -1,6 +1,5 @@
 <h5>Évolution de ton salaire net</h5>
-<% if params["start_at"].present? %>
-  <%= line_chart @my_doclines.select{|line| line.category == 'salaire_net_paye' && line.data_entry_period >= Date.parse(params["start_at"])}.pluck(:data_entry_period, :amount),
+  <%= line_chart my_doclines.select{|line| line.category == 'salaire_net_paye' && line.data_entry_period >= start_at && line.data_entry_period <= end_at}.pluck(:data_entry_period, :amount),
               library: { animation: { easing: 'easeInOutQuart'}},
               colors: ["#4D54E1", "#F9D132"],
               prefix: "€",
@@ -8,13 +7,3 @@
               round: 2,
               download: true,
               min: 3000, height: "200px", defer: true %>
-<% else %>
-<%= line_chart @my_doclines.select{|line| line.category == 'salaire_net_paye'}.pluck(:data_entry_period, :amount),
-              library: { animation: { easing: 'easeInOutQuart'}},
-              colors: ["#4D54E1", "#F9D132"],
-              prefix: "€",
-              thousands: " ",
-              round: 2,
-              download: true,
-              min: 3000, height: "200px", defer: true %>
-<% end %>
