@@ -2,11 +2,17 @@ require 'open-uri'
 class DocumentsController < ApplicationController
 
   def index
+
+    @my_documents = Document.where(user: current_user)
+
     if params[:query].present?
-      @documents = Document.global_search(params[:query])
+      @documents = @my_documents.global_search(params[:query])
     else
-      @documents = Document.all
+      @documents = @my_documents
     end
+
+    @documents_id = @my_documents.map{|doc| doc.id}
+    @my_doclines = DocLine.select {|line| @documents_id.include? (line.document_id)}
   end
 
   def show

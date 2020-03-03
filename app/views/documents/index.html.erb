@@ -1,5 +1,5 @@
 <% groups = @documents.where(user: current_user).sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
-<% salnet = DocLine.where(category: :salaire_net_paye ).group_by{ |m| m.data_entry_period.year } %>
+<% salnet = @my_doclines.select{|line| line.category == 'salaire_net_paye'}.group_by{ |m| m.data_entry_period.year } %>
 
 <div class="container">
   <div class="button-add">
