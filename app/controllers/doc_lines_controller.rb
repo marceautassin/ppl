@@ -1,7 +1,6 @@
 class DocLinesController < ApplicationController
 
   def index
-
     @documents = Document.where(user: current_user)
     @documents_id = @documents.pluck(:id)
     @my_doclines = DocLine.select {|line| @documents_id.include? (line.document_id)}
@@ -20,7 +19,7 @@ class DocLinesController < ApplicationController
   private
 
   def define_params
-    if params[:query]
+    if params[:query] && params[:query][:data_entry_period] != ""
       @start_at = Date.parse(params[:query][:data_entry_period].split(' to ').first)
       @end_at = Date.parse(params[:query][:data_entry_period].split(' to ').last)
     else

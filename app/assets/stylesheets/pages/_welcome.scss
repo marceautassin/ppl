@@ -1,13 +1,14 @@
 body {
   height: 100vh;
   width: 100%;
-  background:white;
+  background: $light-blue;
 }
 
 .backgroundimage {
 position: absolute;
 right: 0px;
 bottom:0px;
+opacity: 0.6;
 }
 
 .containerr{
@@ -26,16 +27,21 @@ bottom:0px;
     width: 310px;
     height: 200px;
     transition: 0.5s;
+    padding: 10%;
+
 }
 
 .containerr .cardd .face.face1{
     position: relative;
-    background: white;
+    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
     transform: translateY(100px);
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px #6c62fb12;
+
 }
 
 .containerr .cardd:hover .face.face1{
@@ -49,7 +55,8 @@ bottom:0px;
 }
 
 .containerr .cardd:hover .face.face1 .content{
-    opacity: 1;
+    opacity: 0.4;
+
 }
 
 .containerr .cardd .face.face1 .content img{
@@ -57,17 +64,17 @@ bottom:0px;
 }
 
 .containerr .cardd .face.face1 .content h3{
-    margin: 10px 0 0;
+    margin: 23px 0 0;
     padding: 0;
-    color: $dark-purple;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 14px;
+    color: $dark-purple;
 }
 
 
 .containerr .cardd .face.face2 {
     position: relative;
-    background: #4D54E1;
+    background: #211d43;
     color: white;
     font-weight: bold;
     display: flex;
@@ -75,13 +82,17 @@ bottom:0px;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    // box-shadow: 0px 0px 20px $light-blue;
     transform: translateY(-100px);
+    border-radius: 23px;
 }
 
 .containerr .cardd:hover .face.face2{
     transform: translateY(0);
+}
+
+.containerr .cardd:hover h3{
+    transform: translateY(0);
+    color: white;
 }
 
 .containerr .cardd .face.face2 .content h3{
@@ -95,6 +106,8 @@ bottom:0px;
 .containerr .cardd .face.face2 .content p{
     margin: 0;
     padding: 0;
+    font-size: 14px;
+    text-align: center;
 }
 
 .containerr .cardd .face.face2 .content a{
@@ -108,7 +121,8 @@ bottom:0px;
 }
 
 .containerr .cardd .face.face2 .content a:hover{
-    background: $yellow;;
+    background: #211d43;
     color: $dark-purple;
 }
+
 

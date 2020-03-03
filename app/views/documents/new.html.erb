@@ -12,7 +12,7 @@
           <%= form.input :month, as: :date,  discard_day: true, discard_year: true  %>
         </div>
       </div>
-      <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2'%>
+      <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mb-2', 'data-disable-with' => "<i class='fa fa-spinner fa-spin'></i>".html_safe %>
     <% end %>
   </div>
 
