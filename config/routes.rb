@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
   get '/welcome', to: "pages#welcome"
-  get '/simulations', to: "pages#simulations"
+  resources :simulations, only: [:index]
   resources :pages, only: [:index]
   resources :doc_lines, only: [:index]
   resources :documents, only: %i[index new show create edit update destroy], shallow: true do
