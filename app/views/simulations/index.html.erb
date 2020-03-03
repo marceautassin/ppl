@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Simulations#index</h1>
+    <p>Find me in app/views/simulations/index.html.erb</p>
+    <p>Revenu brut total des 12 derniers mois : <%= @revenutotallastyear %></p>
+    <p>Salaire Journalier de Référence (SJR) : <%= @sjr %></p>
+
+    <% if @arej_m1 > @arej_m2 %>
+     <div class="one">Allocation journalière de Retour à l'Emploi: <%= @are_j_m1 %></div>
+    <% else %>
+     <div class="two">Allocation journalière de Retour à l'Emploi: <%= @are_j_m2 %></div>
+    <% end %>
+    <p>Allocation mensuelle de Retour à l'Emploi (base: 30jours) : <%= @arem_m2 %></p>
+
+    <% if @arej_m2 > 84.33  %>
+
+    <p>Attention, depuis le 01 novembre 2019, une décôte de 30% est appliquée sur votre allocation à
+    compter du 7ème mois d'indemnisation. Concrètement, votre allocation journalière passera d'un montant de
+     <%= @are_j_m2 %>
+
+    à un montant de
+      <% if @arej_m2_postdecote > 84.33 %>
+          <%= @are_j_m2_postdecote + '.' %>
+      <% else %>
+          <%= @arej_m2_postdecote_plancher + '.'%>
+      <% end %>
+    </p>
+    <% else %>
+      <%= %>
+    <% end %>
+
+
+
+
+
+</div>
+
+
