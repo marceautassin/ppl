@@ -11,9 +11,11 @@ puts 'Création des fiches de paies...'
   period = (Date.new(2015, 8)..Date.new(2020, 2)).select {|d| d.day == 1}
 
   period.each do |date|
+    moiss = ['0', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+    docname = "#{moiss[date.month].capitalize} #{date.year}"
 
     document = Document.new(
-      name: "#{Date::MONTHNAMES[date.month]} #{date.year}",
+      name: "#{docname}",
       entreprise: 'Le Wagon',
       siret: '79494991700023',
       address: '107, cours Balguerie Stuttenberg 33000 Bordeaux',

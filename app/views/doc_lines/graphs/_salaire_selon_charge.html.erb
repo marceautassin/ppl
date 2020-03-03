@@ -1,5 +1,5 @@
-<% impots = @my_doclines.select{|line| line.category == 'impot_revenu'}.pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
-<% salaire_net = @my_doclines.select{|line| line.category == 'salaire_net_paye'}.pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
+<% impots = my_doclines.select{|line| line.category == 'impot_revenu' && line.data_entry_period >= start_at && line.data_entry_period <= end_at}.pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
+<% salaire_net = my_doclines.select{|line| line.category == 'salaire_net_paye' && line.data_entry_period >= start_at && line.data_entry_period <= end_at}.pluck(:data_entry_period, :amount).map{|elem| [elem.first.strftime('%b %Y'), elem[1]]} %>
 <%= column_chart [
                   {name: "Salaire net", data: salaire_net},
                   {name: "Impôt sur le revenu", data: impots}

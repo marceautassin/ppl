@@ -1,0 +1,8 @@
+<div class="d-flex w-100 justify-content-between align-content-center">
+  <%= simple_form_for :query, method: :get, html: { class: 'form-inline' }, url: doc_lines_path do |f| %>
+    <i class="far fa-calendar-alt mr-2" style="font-size: 25px;"></i>
+    <%= f.input :data_entry_period, as: :string, label: false, placeholder: "Du #{start_at.strftime("%d-%m-%Y")} au #{end_at.strftime("%d-%m-%Y")}", input_html: { id: 'rangeDate', class: 'bg-light', style: 'width: 580px;' } %>
+    <%= f.submit 'Je filtre', class: 'btn btn-warning', style: 'padding: 12px; margin-left: 10px;' %>
+    <%= link_to 'Tout voir', doc_lines_path, class: 'btn btn-primary', style: 'padding: 12px; margin-left: 10px;' %>
+  <% end %>
+</div>
