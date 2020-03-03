@@ -6,6 +6,7 @@ puts 'Création des fiches de paies...'
     email: 'thomas.thevenoud@escroc.fr',
     password: 'azerty'
   )
+  user.photo.attach(io: File.open("app/assets/images/thevenoud.jpg"), filename: 'thevenoud.jpg', content_type: 'image/jpg')
   user.save!
 
   period = (Date.new(2015, 8)..Date.new(2020, 2)).select {|d| d.day == 1}
