@@ -1,6 +1,6 @@
 <div class="container">
-  <h2 class="my-4">Confirme ta fiche de paye</h2>
-  <div class="d-flex salnet">
+  <h2 class="my-4">Confirmation de votre bulletin de salaire</h2>
+  <div class="d-flex">
     <div class="w-75 pr-3">
       <%= cl_image_tag(@document.photo.key, format: :jpg, style: 'width: 90%;order: 1px solid #cbcbce5e; background:white;padding: 5%;') %>
     </div>
@@ -23,3 +23,25 @@
     </div>
   </div>
 </div>
+
+<style>
+
+
+  .container{
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 25vh;
+    width: 100%;
+  }
+}
+</style>
