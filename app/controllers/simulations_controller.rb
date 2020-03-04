@@ -47,16 +47,16 @@ class SimulationsController < ApplicationController
 
 
     # AGE DEPART RETRAITE AU PLUS TOT
-    @age_tot = '62 ans'
+    @age_tot = 62
 
     # AGE DEPART RETRAITE AU PLUS TARD
-    @age_plein = ' 78 ans'
+    @age_plein = 78
 
    # TRIMESTRES ACQUIS AU "31/12/19"
-    @trim_acquis = '43'
+    @trim_acquis = 43
 
    # TRIMESTRES RESTANTS AVANT TAUX PLEIN"
-    @trim_restants = '129'
+    @trim_restants = 129
 
 
 

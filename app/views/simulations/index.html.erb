@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="mt-4 mb-0">Simulations</h2>
+  <h2 class="mt-4 mb-0 text-left">Simulations</h2>
   <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pole-emploi" role="tab" aria-controls="pole-emploi" aria-selected="true">Pôle Emploi</a>
@@ -59,21 +59,68 @@
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
 <!-- DEBUT CONTENU RETRAITE -->
-    <div class="row">
-      <div class="col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Trimestres acquis au 31/12/19', value: @trim_acquis} %></div>
-      <div class="col-md-8 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Trimestres restants pour une retraite à taux plein:", value: @trim_restants} %></div>
-      </div>
 
-    <div class="row">
-      <div class="col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Votre âge de départ au plus tôt', value: @age_tot} %></div>
-      <div class="col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Votre âge de départ au taux maximum:", value: @age_plein} %></div>
+
+    <div>
+        <div class="wrapper mb-5">
+
+          <h4 class="mb-4">Retraite</h4>
+            <%= image_tag "trimestres.svg", alt: "alttext", style: 'width:760px;opacity:0.7;' %>
+            <div class="counter col_fourth" style="margin-top:-210px;">
+              <i class="far fa-save fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number" data-to="300" data-speed="1500"><%= @trim_acquis %></h2>
+               <p class="count-text ">Trimestres acquis<br></p>
+               <br>
+            </div>
+
+            <div class="counter col_fourth" style="margin-top:-210px;">
+              <i class="far fa-clock fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"><%= @trim_restants %></h2>
+              <p class="count-text ">Trismestres restants<br></p>
+              <br>
+            </div>
+
+            <div class="counter col_fourth" style="margin-top:-210px;">
+              <i class="fab fa-pagelines fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"><%= @age_tot %></h2>
+              <p class="count-text ">Âge de départ à la retraite<br> (au plus tôt) </p>
+            </div>
+
+            <div class="counter col_fourth end" style="margin-top:-210px;">
+              <i class="fa fa-bug fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number" data-to="157" data-speed="1500"><%= @age_plein %></h2>
+              <p class="count-text ">Âge de départ à la retraite<br> (à taux plein)</p>
+            </div>
+        </div>
+
+
+        <button type="button" class="btn btn-primary mt-3 w-100" data-toggle="modal" data-target="#exampleModalCenter">
+          Calcul du montant mensuel de ma retraite
+        </button>
     </div>
-                <div class="col-md-4 col-sm-12 pr-0 pl-2 third modif_typo "><%= render 'shared/cards_dash', {img: 'credit_card.png',title: "Calcul du montant mensuel de ma retraite", value: ' '}%></div>
+
+
 
 
 <!-- FIN CONTENU RETRAITE -->
 
 
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content"  style="background-color: #D3F0F0;">
+
+        <button type="button" class="close text-right m-2" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">╳</span>
+        </button>
+      <div class="modal-body">
+        <h4 class="text-primary">Vous êtes sérieux Thomas ?!</h4>
+        <p class="my-3 text-dark" style="font-weight:normal;">Retournez plutôt bosser ... on en reparle dans 15 ans ! </p>
+        <%= image_tag "gif1.gif", alt: "alttext", style: "width:470px", class: 'my-2' %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     </div>
@@ -85,11 +132,156 @@
     padding-top:10%;
   }
 
+
+
+body {
+  font-family: Arial;
+  background-color: #f5f5f5;
+  color: #808080;
+    text-align: center;
+}
+
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+/* Column Grids */
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+
+.col_half { width: 49%; }
+.col_third { width: 32%; }
+.col_fourth { width: 23.5%; }
+.col_fifth { width: 18.4%; }
+.col_sixth { width: 15%; }
+.col_three_fourth { width: 74.5%;}
+.col_twothird{ width: 66%;}
+.col_half,
+.col_third,
+.col_twothird,
+.col_fourth,
+.col_three_fourth,
+.col_fifth{
+  position: relative;
+  display:inline;
+  display: inline-block;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 20px #F5F7FA;
+  border-radius: 20px;
+  padding:20px;
+}
+.end { margin-right: 0 !important; }
+/* Column Grids End */
+
+.wrapper { width: 750px; margin: 30px auto; position: relative;}
+.counter { background-color: #ffffff; padding: 20px 0; border-radius: 20px;}
+.count-title { font-size: 50px;  margin-top: 10px; margin-bottom: 0; text-align: center; }
+.count-text { font-size: 14px; margin-bottom: 0; text-align: center; }
+.fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
+
+
 </style>
 
 
 
+<script>
+  (function ($) {
+  $.fn.countTo = function (options) {
+    options = options || {};
 
+    return $(this).each(function () {
+      // set options for current element
+      var settings = $.extend({}, $.fn.countTo.defaults, {
+        from:            $(this).data('from'),
+        to:              $(this).data('to'),
+        speed:           $(this).data('speed'),
+        refreshInterval: $(this).data('refresh-interval'),
+        decimals:        $(this).data('decimals')
+      }, options);
+
+      // how many times to update the value, and how much to increment the value on each update
+      var loops = Math.ceil(settings.speed / settings.refreshInterval),
+        increment = (settings.to - settings.from) / loops;
+
+      // references & variables that will change with each update
+      var self = this,
+        $self = $(this),
+        loopCount = 0,
+        value = settings.from,
+        data = $self.data('countTo') || {};
+
+      $self.data('countTo', data);
+
+      // if an existing interval can be found, clear it first
+      if (data.interval) {
+        clearInterval(data.interval);
+      }
+      data.interval = setInterval(updateTimer, settings.refreshInterval);
+
+      // initialize the element with the starting value
+      render(value);
+
+      function updateTimer() {
+        value += increment;
+        loopCount++;
+
+        render(value);
+
+        if (typeof(settings.onUpdate) == 'function') {
+          settings.onUpdate.call(self, value);
+        }
+
+        if (loopCount >= loops) {
+          // remove the interval
+          $self.removeData('countTo');
+          clearInterval(data.interval);
+          value = settings.to;
+
+          if (typeof(settings.onComplete) == 'function') {
+            settings.onComplete.call(self, value);
+          }
+        }
+      }
+
+      function render(value) {
+        var formattedValue = settings.formatter.call(self, value, settings);
+        $self.html(formattedValue);
+      }
+    });
+  };
+
+  $.fn.countTo.defaults = {
+    from: 0,               // the number the element should start at
+    to: 0,                 // the number the element should end at
+    speed: 1000,           // how long it should take to count between the target numbers
+    refreshInterval: 100,  // how often the element should be updated
+    decimals: 0,           // the number of decimal places to show
+    formatter: formatter,  // handler for formatting the value before rendering
+    onUpdate: null,        // callback method for every time the element is updated
+    onComplete: null       // callback method for when the element finishes updating
+  };
+
+  function formatter(value, settings) {
+    return value.toFixed(settings.decimals);
+  }
+}(jQuery));
+
+jQuery(function ($) {
+  // custom formatting example
+  $('.count-number').data('countToOptions', {
+  formatter: function (value, options) {
+    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+  }
+  });
+
+  // start all the timers
+  $('.timer').each(count);
+
+  function count(options) {
+  var $this = $(this);
+  options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+  $this.countTo(options);
+  }
+});
+</script>
 
 
 

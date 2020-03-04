@@ -23,7 +23,7 @@ class DocLinesController < ApplicationController
       @start_at = Date.parse(params[:query][:data_entry_period].split(' to ').first)
       @end_at = Date.parse(params[:query][:data_entry_period].split(' to ').last)
     else
-      @start_at = @my_doclines.first.data_entry_period
+      @start_at = @my_doclines[-72].data_entry_period
       @end_at = @my_doclines.last.data_entry_period
     end
   end
