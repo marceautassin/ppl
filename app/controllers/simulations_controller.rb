@@ -4,9 +4,12 @@ class SimulationsController < ApplicationController
 
     #REVENU BRUT TOTAL DES 12 DERNIERS MOIS
     @somme = 0
-    Document.last(12).each {|document|
+    Document.where(user_id:current_user).last(12).each {|document|
       @somme += document.doc_lines.where(category: :salaire_brut).last.amount
     }
+
+
+
     @revenutotallastyear = @somme.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1 ').reverse + ' €'
 
 
@@ -15,9 +18,11 @@ class SimulationsController < ApplicationController
     @sjr = @sjr_integer.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1 ').reverse + ' €'
 
 
+
     #ALLOCATION JOURNALIERE DE RETOUR A L'EMPLOI
     @arej_m1 =  @sjr_integer * 0.404 + 12
     @arej_m2 = @sjr_integer * 0.57
+
 
     if @arej_m1 > @arej_m2
       @are_j_m1 =@arej_m1.round(2).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1 ').reverse + ' €'
@@ -36,14 +41,31 @@ class SimulationsController < ApplicationController
     @arej_m2_postdecote_plancher = '84.33 €'
 
     if @arej_m2_postdecote > 84.33
-
     else
       @arej_m2_postdecote_plancher = '84.33 €'
     end
 
+
+    # AGE DEPART RETRAITE AU PLUS TOT
+    @age_tot = '62 ans'
+
+    # AGE DEPART RETRAITE AU PLUS TARD
+    @age_plein = ' 78 ans'
+
+   # TRIMESTRES ACQUIS AU "31/12/19"
+    @trim_acquis = '43'
+
+   # TRIMESTRES RESTANTS AVANT TAUX PLEIN"
+    @trim_restants = '129'
+
+
+
+
+
     #GRAPHIQUES
     range = ((Date.today - 365*2)..Date.today)
     two_years = range.map {|d| Date.new(d.year, d.month, 1) }.uniq
+
 
     @data_amre = []
 
