@@ -1,6 +1,10 @@
 <div class="container">
   <h1>Simulations#index</h1>
     <p>Find me in app/views/simulations/index.html.erb</p>
+
+  <h2>POLE EMPLOI</h2>
+
+
     <p>Revenu brut total des 12 derniers mois : <%= @revenutotallastyear %></p>
     <p>Salaire Journalier de Référence (SJR) : <%= @sjr %></p>
 
@@ -27,6 +31,20 @@
     <% else %>
       <%= %>
     <% end %>
+
+  <h2>RETRAITE</h2>
+
+  <h4>Votre âge de départ au plus tôt : <%=  %> soit à partir du <%=  %></h4>
+
+  <h4>Votre âge de départ à taux maximum : <%=  %> soit à partir du <%=  %>
+    <p>Vous pourriez obtenir votre retraite à l'age : <%=  %> soit à partir du <%=  %></p>
+    <p>Vous avez actuellement : <%=  %> . Il vous en faudrait : <%=  %></p>.
+
+
+
+  </h4>
+
+
 
 
 
