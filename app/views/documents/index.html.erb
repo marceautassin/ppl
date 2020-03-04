@@ -1,5 +1,5 @@
 <% groups = @documents.where(user: current_user).sort_by { |h| h.year }.reverse.group_by { |m| m.year } %>
-<% salnet = DocLine.where(category: :salaire_net_paye ).group_by{ |m| m.data_entry_period.year } %>
+<% salnet = @my_doclines.select{|line| line.category == 'salaire_net_paye'}.group_by{ |m| m.data_entry_period.year } %>
 
 <div class="container">
   <div class="button-add">
@@ -32,6 +32,18 @@
 
             <%= form.button :submit, 'Ajouter' , class:'btn btn-primary w-100 mt-5', onclick:'cursor_wait();'%>
           <% end %>
+          <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-contenu" style="vertical-align: middle;">
+              <p>✨</p>
+              <h4 class="mt-4">Notre sorcier est en train d'extraire les données de votre fiche de paye  ...</h4>
+              <%= image_tag "sorcier.gif", alt: "alttext", width: '580px' %>
+              <p class='mx-5'style="font-size: 16px;">Merci de bien vouloir patienter quelques secondes afin que la magie s'opère</p>
+              <p>✨</p>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -176,9 +188,57 @@
 </div>
 
 
+<style>
+/* Modal Content/Box */
+.modal-contenu {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 45%;
+  height: 685px;
+  border-radius: 20px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  .container{
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 25vh;
+    width: 100%;
+  }
+}
+</style>
+
 <script>
   const cursor_wait = () => {
    setTimeout(document.body.style.cursor = 'wait', 4000);
+   var modal = document.getElementById("myModal");
+    modal.style.display = "block";
   }
 
 </script>

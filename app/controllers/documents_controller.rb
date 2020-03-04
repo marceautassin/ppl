@@ -3,12 +3,17 @@ require 'net/http'
 class DocumentsController < ApplicationController
 
   def index
+
+    @my_documents = Document.where(user: current_user)
+
     if params[:query].present?
-      @documents = Document.global_search(params[:query])
+      @documents = @my_documents.global_search(params[:query])
     else
-      @documents = Document.all
+      @documents = @my_documents
     end
 
+    @documents_id = @my_documents.map{|doc| doc.id}
+    @my_doclines = DocLine.select {|line| @documents_id.include? (line.document_id)}
   end
 
   def show
@@ -33,6 +38,14 @@ class DocumentsController < ApplicationController
   end
 
   def edit
+
+    @cat_hash = { "salaire_brut" => 0, "salaire_net_paye" => 1, "impot_revenu" => 2, "conge_n_1" => 3, "conge_n" => 4, "rtt" => 5 }
+    @document = Document.find(params[:id])
+    sleep(3)
+    result = Cloudinary::Search.max_results(1).execute
+    pdf = URI.open(result["resources"][0]["url"])
+    ocr = {}
+    ocr = @document.construction_hash(pdf)
     # ocr = {:salaire_brut=>"5083.33",
     #   :salaire_net_paye=>"3868.84",
     #   :impot_revenu=>"590.75",
@@ -42,12 +55,7 @@ class DocumentsController < ApplicationController
     #   :year=>2019
     #   :month=> (1..12)
     #   :siret=> "478558698525"
-    @document = Document.find(params[:id])
-    sleep(3)
-    result = Cloudinary::Search.max_results(1).execute
-    pdf = URI.open(result["resources"][0]["url"])
-    ocr = {}
-    ocr = @document.construction_hash(pdf)
+
     @document.year = ocr[:document_infos][:year]
     @document.month = ocr[:document_infos][:month]
     @document.siret = ocr[:document_infos][:siret]

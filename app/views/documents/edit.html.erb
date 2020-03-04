@@ -1,6 +1,6 @@
 <div class="container">
-  <h2 class="my-4">Confirme ta fiche de paye</h2>
-  <div class="d-flex salnet">
+  <h2 class="my-4">Confirmation de votre bulletin de salaire</h2>
+  <div class="d-flex">
     <div class="w-75 pr-3">
       <%= cl_image_tag(@document.photo.key, format: :jpg, style: 'width: 90%;order: 1px solid #cbcbce5e; background:white;padding: 5%;') %>
     </div>
@@ -10,7 +10,7 @@
         <%= f.submit 'Valider les informations', class: 'btn btn-success text-white w-100' %>
         <p class="my-3">Bulletin du mois de : <%= f.text_field :name, class: 'amount' %></p>
         <!-- ici un probleme d'ordre des doc_line ! a retravailler quentin 01/03 -->
-        <% @document.doc_lines.each do |doc_line| %>
+        <% @document.doc_lines.sort_by { |dl| @cat_hash[dl.category] }.each do |doc_line| %>
           <%= f.fields_for :doc_lines, doc_line do |d| %>
             <p>
               <%= d.input :category, placeholder: doc_line.category.capitalize.gsub('_', ' '), input_html: {disabled: "disabled"}, label: false %>
@@ -23,3 +23,25 @@
     </div>
   </div>
 </div>
+
+<style>
+
+
+  .container{
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 25vh;
+    width: 100%;
+  }
+}
+</style>

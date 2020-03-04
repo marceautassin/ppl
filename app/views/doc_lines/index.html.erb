@@ -1,18 +1,20 @@
 <div class="container dashboard">
-  <h2 class="mt-4">Dashboard</h2>
-  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+  <div class="d-flex justify-content-between">
+    <h2 class="mt-4">Tableau de bord</h2>
+  </div>
   <div class="d-flex justify-content-center">
     <div class="grid m-2 w-75">
-      <div class="row">
-        <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Fiches de paies', value: Document.count} %></div>
-        <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "R.T.T restant(s)", value: DocLine.where(category: :rtt).last.amount.to_i} %></div>
-        <div class="col-6 col-md-4 col-sm-12 pr-0 pl-2 third"><%= render 'shared/cards_dash', {img: 'credit_card.png',title: 'Revenu total', value: DocLine.where(category: :salaire_net_paye).sum(:amount).round.to_s.reverse.gsub(/...(?=.)/,'\& ').reverse + ' €'}%></div>
+      <div class="row mb-3">
+        <%= render 'doc_lines/filters', start_at: @start_at, end_at: @end_at %>
       </div>
-      <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+      <div class="row">
+        <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Fiches de paies', value: @documents_id.count} %></div>
+        <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "R.T.T restant(s)", value: @rtt} %></div>
+        <div class="col-6 col-md-4 col-sm-12 pr-0 pl-2 third"><%= render 'shared/cards_dash', {img: 'credit_card.png',title: 'Revenu total', value: @revenu_an}%></div>
+      </div>
       <div class="row">
         <div class="col-12 col-md-12 p-4 my-3 salnet">
-          <h5>Évolution de ton salaire net</h5>
-          <div class="mt-2"><%= render "doc_lines/graphs/remnet_an" %></div>
+          <div class="mt-2" id="salaire_net"><%= render "doc_lines/graphs/remnet_an", my_doclines: @my_doclines, start_at: @start_at, end_at: @end_at %></div>
         </div>
       </div>
 
@@ -21,14 +23,14 @@
           <div class="salcharge p-4">
             <h5>Évolution de ton salaire net (avec charges)</h5>
             <div class="mt-2">
-              <%= render "doc_lines/graphs/salaire_selon_charge" %>
+              <%= render "doc_lines/graphs/salaire_selon_charge", my_doclines: @my_doclines, start_at: @start_at, end_at: @end_at %>
             </div>
           </div>
         </div>
         <div class="col-4 pr-0 mr-0">
           <div class="salcharge p-4">
             <h5>Congés</h5>
-            <div class="mt-2"><%= render "doc_lines/graphs/conges" %></div>
+            <div class="mt-2"><%= render "doc_lines/graphs/conges", my_doclines: @my_doclines, start_at: @start_at, end_at: @end_at %></div>
           </div>
         </div>
       </div>
@@ -39,13 +41,12 @@
         <h5>Avant la retraite:</h5>
         <div class="w-100 flex-column align-items-center"  style="position: relative;left: 15%;margin-top: 5%;">
           <div><%= render "doc_lines/graphs/retraite" %></div>
-          <h5 style="line-height: 12px; position: absolute;top: 67px;left:51px"><%=  (480 * 30 - Document.count * 30).to_s.reverse.gsub(/...(?=.)/,'\& ').reverse %><br><span style="font-size:11px;">jours</span> </h5>
-
+          <h5 style="line-height: 12px; position: absolute;top: 67px;left:50px"><%=  (480 * 30 - @documents_id.count * 30).to_s.reverse.gsub(/...(?=.)/,'\& ').reverse %><br><span style="font-size:11px;">jours</span> </h5>
         </div>
 
         <div class="info p-3">
           <h5><i class="far fa-user"></i></h5>
-          <p style="font-weight:italic;"><%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p style="font-weight:bold;"><%= current_user.first_name %> <%= current_user.last_name %></p>
           <p><%= current_user.email %></p>
           <p class="m-0" style="font-weight: 400;">N° de sécurité sociale :</p>
           <p><%= current_user.social_security_number %></p>
@@ -53,7 +54,7 @@
 
         <div class="p-3 mt-2">
           <p><strong style="font-size: 12px;">Mes derniers documents</strong></p>
-          <% Document.last(2).each do |doc|%>
+          <% @documents.last(2).reverse.each do |doc|%>
             <%= link_to document_path(doc) do %>
             <div class="d-flex justify-content-between align-items-center">
               <p  style="font-size: 10px;"><%= doc.name %></p>

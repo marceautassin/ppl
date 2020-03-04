@@ -1,4 +1,4 @@
-<% last_doc = DocLine.where(document_id: Document.last).select{|line| line.category == 'conge_n' || line.category == 'conge_n_1'} %>
+<% last_doc = my_doclines.select{|line| line.category == 'conge_n' || line.category == 'conge_n_1' && line.data_entry_period >= start_at && line.data_entry_period <= end_at}.last(2) %>
 
 <%= column_chart [
         ["N-1", last_doc.pluck(:conge_n, :amount)[0][1]],

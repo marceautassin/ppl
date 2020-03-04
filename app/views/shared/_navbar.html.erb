@@ -6,7 +6,7 @@
     <% if user_signed_in? %>
       <ul class="m-0 pl-2">
         <li>
-          <%= link_to documents_path do%>
+          <%= link_to welcome_path do%>
             <div class='nav-link d-flex align-items-center menu-item' style="position: relative;">
               <i class="fas fa-home"></i>
               <p class='bg-dark p-1 etiquette text-center' style="width: 100px;position: absolute;left: 30px;border-radius: 10px;font-size: 11px;">Accueil</p>
@@ -24,8 +24,16 @@
         <li>
           <%= link_to doc_lines_path do %>
             <div class='nav-link d-flex align-items-center menu-item' style="position: relative;">
-              <i class="fas fa-tachometer-alt"></i>
+              <i class="fas fa-chart-bar"></i>
               <p class='bg-dark p-1 etiquette text-center' style="width: 150px;position: absolute;left: 30px;border-radius: 10px;font-size: 11px;">Mon tableau de bord</p>
+            </div>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to simulations_path do %>
+            <div class='nav-link d-flex align-items-center menu-item mt-2' style="position: relative;">
+              <i class="fas fa-calculator"></i>
+              <p class='bg-dark p-1 etiquette text-center' style="width: 150px;position: absolute;left: 30px;border-radius: 10px;font-size: 11px;">Mes simulations</p>
             </div>
           <% end %>
         </li>
