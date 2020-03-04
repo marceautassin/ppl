@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="mt-4 mb-0">Simulations</h2>
-  <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+  <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pole-emploi" role="tab" aria-controls="pole-emploi" aria-selected="true">Pôle Emploi</a>
     </li>
@@ -34,66 +34,62 @@
               download: true,
               min:1500, height: "270px", defer: true %>
           </div>
+          <!-- DEBUT EXPLICATION DECOTE POLE EMPLOI -->
+          <div class="explication mt-3">
+            <% if @arej_m2 > 84.33  %>
+            <p>Attention, depuis le 01 novembre 2019, une décôte de 30% est appliquée sur votre allocation à
+            compter du 7ème mois d'indemnisation. Concrètement, votre allocation journalière passera d'un montant de
+             <%= @are_j_m2 %>
+            à un montant de
+              <% if @arej_m2_postdecote > 84.33 %>
+                  <%= @are_j_m2_postdecote + '.' %>
+              <% else %>
+                  <%= @arej_m2_postdecote_plancher + '.'%>
+              <% end %>
+              </p>
+              <% else %>
+                <%= %>
+              <% end %>
+          <!-- FIN EXPLICATION DECOTE POLE EMPLOI -->
+          </div>
 
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
+<!-- DEBUT CONTENU RETRAITE -->
+    <div class="row">
+      <div class="col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Trimestres acquis au 31/12/19', value: @trim_acquis} %></div>
+      <div class="col-md-8 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Trimestres restants pour une retraite à taux plein:", value: @trim_restants} %></div>
+      </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Votre âge de départ au plus tôt', value: @age_tot} %></div>
+      <div class="col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Votre âge de départ au taux maximum:", value: @age_plein} %></div>
+    </div>
+                <div class="col-md-4 col-sm-12 pr-0 pl-2 third modif_typo "><%= render 'shared/cards_dash', {img: 'credit_card.png',title: "Calcul du montant mensuel de ma retraite", value: ' '}%></div>
+
+
+<!-- FIN CONTENU RETRAITE -->
+
+
+
+
+    </div>
+  </div>
 
 <style>
   .third > div {
     height: 120px;
     padding-top:10%;
   }
+
 </style>
 
 
 
-    <p>Find me in app/views/simulations/index.html.erb</p>
 
-  <h2>POLE EMPLOI</h2>
-
-
-    <p>Revenu brut total des 12 derniers mois : <%= @revenutotallastyear %></p>
-    <p>Salaire Journalier de Référence (SJR) : <%= @sjr %></p>
-
-    <% if @arej_m1 > @arej_m2 %>
-     <div class="one">Allocation journalière de Retour à l'Emploi: <%= @are_j_m1 %></div>
-    <% else %>
-     <div class="two">Allocation journalière de Retour à l'Emploi: <%= @are_j_m2 %></div>
-    <% end %>
-    <p>Allocation mensuelle de Retour à l'Emploi (base: 30jours) : <%= @arem_m2 %></p>
-
-    <% if @arej_m2 > 84.33  %>
-
-    <p>Attention, depuis le 01 novembre 2019, une décôte de 30% est appliquée sur votre allocation à
-    compter du 7ème mois d'indemnisation. Concrètement, votre allocation journalière passera d'un montant de
-     <%= @are_j_m2 %>
-
-    à un montant de
-      <% if @arej_m2_postdecote > 84.33 %>
-          <%= @are_j_m2_postdecote + '.' %>
-      <% else %>
-          <%= @arej_m2_postdecote_plancher + '.'%>
-      <% end %>
-    </p>
-    <% else %>
-      <%= %>
-    <% end %>
-
-  <h2>RETRAITE</h2>
-
-  <h4>Votre âge de départ au plus tôt : <%=  %> soit à partir du <%=  %></h4>
-
-  <h4>Votre âge de départ à taux maximum : <%=  %> soit à partir du <%=  %>
-    <p>Vous pourriez obtenir votre retraite à l'age : <%=  %> soit à partir du <%=  %></p>
-    <p>Vous avez actuellement : <%=  %> . Il vous en faudrait : <%=  %></p>.
-
-
-
-  </h4>
 
 
 

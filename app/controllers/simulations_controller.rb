@@ -3,9 +3,9 @@ class SimulationsController < ApplicationController
   def index
 
     #REVENU BRUT TOTAL DES 12 DERNIERS MOIS
-    somme = 0
-    Document.last(12).each {|document|
-      somme += document.doc_lines.where(category: :salaire_brut).last.amount
+    @somme = 0
+    Document.where(user_id:current_user).last(12).each {|document|
+      @somme += document.doc_lines.where(category: :salaire_brut).last.amount
     }
 
 
@@ -50,7 +50,17 @@ class SimulationsController < ApplicationController
     @age_tot = '62 ans'
 
     # AGE DEPART RETRAITE AU PLUS TARD
-    @age_tot = ' ans'
+    @age_plein = ' 78 ans'
+
+   # TRIMESTRES ACQUIS AU "31/12/19"
+    @trim_acquis = '43'
+
+   # TRIMESTRES RESTANTS AVANT TAUX PLEIN"
+    @trim_restants = '129'
+
+
+
+
 
     #GRAPHIQUES
     range = ((Date.today - 365*2)..Date.today)
