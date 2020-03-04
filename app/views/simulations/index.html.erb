@@ -1,5 +1,51 @@
 <div class="container">
-  <h1>Simulations#index</h1>
+  <h2 class="mt-4">Simulations</h2>
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pole-emploi" role="tab" aria-controls="pole-emploi" aria-selected="true">Pôle Emploi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pole-emploi" role="tabpanel" aria-labelledby="pole-emploi-tab">
+      <div class="d-flex justify-content-center">
+        <div class="grid m-2 w-100">
+          <h4 class="text-center text-primary">Pôle emploi</h4>
+          <div class="row">
+            <div class="col-6 col-md-4 col-sm-12 pl-0 pr-2"><%= render 'shared/cards_dash', {img: 'personal_data.png',title: 'Salaire Journalier de Référence (SJR)', value: @sjr} %></div>
+            <div class="col-6 col-md-4 col-sm-12 px-1"><%= render 'shared/cards_dash', {img: 'note_taking.svg',title: "Allocation journalière de Retour à l'Emploi:", value: @are_j_m2 } %></div>
+            <div class="col-6 col-md-4 col-sm-12 pr-0 pl-2 third"><%= render 'shared/cards_dash', {img: 'credit_card.png',title: "Allocation mensuelle de Retour à l'Emploi sur 30j", value: @arem_m2}%></div>
+          </div>
+
+          <div>
+            <h5>Allocation mensuelle de retour à l'emploi</h5>
+            <%= area_chart @data_amre,
+              library: { animation: { easing: 'easeInOutQuart'}},
+              colors: ["#4D54E1", "#F9D132"],
+              prefix: "€",
+              thousands: " ",
+              round: 2,
+              download: true,
+              min: 3000, height: "200px", defer: true %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+  </div>
+
+
+
+
+
+
     <p>Find me in app/views/simulations/index.html.erb</p>
     <p>Revenu brut total des 12 derniers mois : <%= @revenutotallastyear %></p>
     <p>Salaire Journalier de Référence (SJR) : <%= @sjr %></p>

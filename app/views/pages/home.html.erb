@@ -7,7 +7,7 @@
       <% if !current_user %>
         <%= simple_form_for(@user, url: session_path(@user)) do |f| %>
         <h1 class="text-primary">Administrophobe</h1>
-        <h4 class="text-secondary">Simplifier le suivi de <br>votre vie professionnelle</h4>
+        <p class="text-secondary" style="font-size:20px;">Simplifier le suivi de <br>votre vie professionnelle</p>
           <div class="form-inputs text-left">
             <%= f.input :email,
                         required: false,

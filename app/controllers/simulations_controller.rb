@@ -41,6 +41,26 @@ class SimulationsController < ApplicationController
       @arej_m2_postdecote_plancher = '84.33 €'
     end
 
+    #GRAPHIQUES
+    range = ((Date.today - 365*2)..Date.today)
+    two_years = range.map {|d| Date.new(d.year, d.month, 1) }.uniq
+
+    @data_amre = []
+
+    seven_months = (two_years.first(7).last - two_years.first(7).first).to_i
+    two_years.first(7).each do |month|
+      @data_amre << [month, @arej_m2 * seven_months]
+    end
+
+    reste = (((two_years[7]..Date.today).last) - (two_years[7]..Date.today).first).to_i
+    (two_years[7]..Date.today).each do |month|
+      if @arej_m2 * 0.30 > 84.33
+        @data_amre << [month, @arej_m2 * 0.30 * reste]
+      else
+        @data_amre << [month, @arej_m2 * reste]
+      end
+    end
+
      # DUREE D'INDEMNISATION
 
 
