@@ -1,0 +1,40 @@
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  color: white;
+  background-color: $yellow;
+}
+
+.nav-pills .nav-link {
+  font-weight: bold;
+  background-color: $purple;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 0 10px;
+}
+
+.nav-pills .nav-link:hover {
+  color: $dark-purple;
+}
+
+div#pills-tabContent {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px #6c62fb12;
+}
+
+.bg-pink{
+  color: white;
+  background: #f3a595;
+  border-radius: 15px;
+  width: 150px;
+  padding: 0px 10px;
+  padding-top: 10px;
+  position: absolute;
+  z-index: 3;
+  right: 63px;
+  top: 94px;
+}
+
+.bg-pink > p{
+  font-size: 10px;
+}

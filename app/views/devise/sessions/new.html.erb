@@ -14,8 +14,8 @@
 
     <div class="form text-center" >
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <h1 class="text-primary">Administrophobe</h1>
-        <h4 class="text-secondary">Simplifier le suivi de <br>votre vie professionnelle</h4>
+        <h2 class="text-primary mt-2">Administrophobe</h2>
+        <p class="text-secondary text-dark" style="font-size:18px;font-weight: normal;">Simplifier le suivi de <br>votre vie professionnelle</p>
           <div class="form-inputs text-left">
             <%= f.input :email,
                         required: false,
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="form-actions mt-4">
+          <div class="form-actions mt-3">
             <div class="jemeconnecte"><%= f.button :submit, "Je me connecte", class:"btn btn-success mr-1 w-100"%></div>
             <div class="">
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -108,5 +108,11 @@
   </div>
 </div>
 
+
+<style>
+  label{
+    font-size: 15px;
+  }
+</style>
 
 
