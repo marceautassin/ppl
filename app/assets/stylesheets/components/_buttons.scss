@@ -40,3 +40,28 @@ i#buttonModal{
   top: 35px;
   padding: 14px;
 }
+
+.buttons-selections{
+  font-size: 16px;
+  padding: 12px;
+  color: #fff;
+  background-color: $warning;
+  border-radius:50%;
+  box-shadow: 0px 0px 10px #211d435c;
+  border: none;
+}
+
+.buttons-multi-transition {
+   position: relative;
+  -webkit-animation: linear;
+  -webkit-animation-name: run;
+  -webkit-animation-duration: 1s;
+}
+@-webkit-keyframes run {
+  0% { left: -80%; opacity: 0.3;}
+  100%{ left: 0%; opacity: 1;}
+}
+
+#selection_multiple_doc {
+  z-index:100;
+}

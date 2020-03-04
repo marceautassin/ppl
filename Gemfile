@@ -24,6 +24,7 @@ gem 'groupdate'
 gem 'pdf-reader'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'combine_pdf'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
