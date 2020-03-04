@@ -37,6 +37,7 @@ class DocumentsController < ApplicationController
   end
 
   def edit
+    @cat_hash = { "salaire_brut" => 0, "salaire_net_paye" => 1, "impot_revenu" => 2, "conge_n_1" => 3, "conge_n" => 4, "rtt" => 5 }
     @document = Document.find(params[:id])
     sleep(3)
     result = Cloudinary::Search.max_results(1).execute
