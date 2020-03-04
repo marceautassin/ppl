@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :documents, only: %i[index new show create edit update destroy], shallow: true do
     resources :doc_lines, only: [:show]
   end
+  post 'downloads' ,to:'documents#downloads', as: :download_documents
+  post 'prints' ,to:'documents#prints', as: :print_documents
 end

@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'net/http'
 class DocumentsController < ApplicationController
 
   def index
@@ -37,6 +38,7 @@ class DocumentsController < ApplicationController
   end
 
   def edit
+
     @cat_hash = { "salaire_brut" => 0, "salaire_net_paye" => 1, "impot_revenu" => 2, "conge_n_1" => 3, "conge_n" => 4, "rtt" => 5 }
     @document = Document.find(params[:id])
     sleep(3)
@@ -53,6 +55,7 @@ class DocumentsController < ApplicationController
     #   :year=>2019
     #   :month=> (1..12)
     #   :siret=> "478558698525"
+
     @document.year = ocr[:document_infos][:year]
     @document.month = ocr[:document_infos][:month]
     @document.siret = ocr[:document_infos][:siret]
@@ -85,6 +88,41 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.destroy
     redirect_to documents_path
+  end
+
+  def downloads
+    id = params[:downloads][:ids]
+    ids = id[0].split(",")
+    public_ids =[]
+    ids.each { |id|
+      public_ids << Document.find(id.to_i).photo.key
+    }
+    url = Cloudinary::Utils.download_archive_url(:public_ids => public_ids)
+
+    redirect_to url
+  end
+
+  def prints
+    id = params[:prints][:ids]
+    ids = id[0].split(",")
+    public_ids =[]
+    results = []
+    ids.each { |id|
+      public_ids << Document.find(id.to_i).photo.key
+    }
+    public_ids.each { |id|
+
+    results << Cloudinary::Search.expression(id).execute
+    }
+    pdf = CombinePDF.new
+    results.each { |result|
+       url  = result["resources"][0]["url"];
+       page = CombinePDF.parse Net::HTTP.get_response(URI.parse(url)).body
+       pdf << page
+    }
+    # pdf.save 'combined.pdf'
+    # data = pdf.objects[1][:Pages][:referenced_object][:Kids][0][:referenced_object][:Contents][:referenced_object][:raw_stream_content]
+    # Cloudinary::Uploader.upload("data:image/pdf;base64,#{data}")
   end
 
 
