@@ -63,18 +63,26 @@ class SimulationsController < ApplicationController
 
 
     #GRAPHIQUES
-    range = ((Date.today - 365*2)..Date.today)
-    two_years = range.map {|d| Date.new(d.year, d.month, 1) }.uniq
-
-
     @data_amre = []
+    document = Document.where(user_id: current_user).pluck(:id).last(2)
+    document.each do |doc|
+      docline = DocLine.where(document_id: doc, category: 'salaire_brut').first
+      @data_amre << [docline.data_entry_period, docline.amount]
+    end
 
+    # two_months = ((Date.today - 61)..(Date.today))
+    # two_months_before = two_months.map {|d| Date.new(d.year, d.month, 1) }.uniq
+    # two_months_before.each do |date|
+    #   @data_amre << [date, ]
+    # end
+
+    range = (Date.today..(Date.today + (365*2)))
+    two_years = range.map {|d| Date.new(d.year, d.month, 1) }.uniq
     two_years.first(7).each do |date|
       @data_amre << [date, @arej_m2 * Time.days_in_month(date.month, date.year)]
     end
 
-
-    reste = (two_years[7]..Date.today).map {|d| Date.new(d.year, d.month, 1) }.uniq
+    reste = (two_years[7]..(Date.today + (365*2))).map {|d| Date.new(d.year, d.month, 1) }.uniq
     reste.each do |date|
       if @arej_m2_postdecote < 84.33
         @data_amre << [date, @arej_m2 * 0.70 * Time.days_in_month(date.month, date.year)]
@@ -82,5 +90,6 @@ class SimulationsController < ApplicationController
         @data_amre << [date, @arej_m2 * Time.days_in_month(date.month, date.year)]
       end
     end
+
   end
 end
