@@ -1,11 +1,10 @@
-<div class="fixed-top m-2 d-flex justify-content-between">
-  <div>
-    <%= link_to welcome_path do %>
-      <%= image_tag "billy.png", alt: "alttext", width: "70" %>
-    <% end %>
-  </div>
+<div style="position:fixed; left: 11px; top:25px;z-index: 9999;">
+  <%= link_to welcome_path do %>
+    <%= image_tag "icon-logo.png", alt: "alttext", width: "57" %>
+  <% end %>
+</div>
 
-  <div>
+  <div style="position:fixed; right: 10px; top:15px;">
     <% if user_signed_in? %>
         <% if current_user.photo.attachment.nil? %>
           <%= image_tag "avatar_manquant.png", class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -22,4 +21,4 @@
       </li>
     <% end %>
   </div>
-</div>
+
