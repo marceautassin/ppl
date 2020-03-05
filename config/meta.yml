@@ -1,0 +1,5 @@
+meta_product_name: "Mon Pass Pro"
+meta_title: "Mon Pass Pro - Le coffre fort intelligent de mes données professionnelles"
+meta_description: "Mon Pass Pro simplifie le suivi de ma vie professionnelle: coffre fort, tableau de bord et simulations personnalisée."
+meta_image: "logo.png" # should exist in `app/assets/images/`
+twitter_account: "@monpasspro"
