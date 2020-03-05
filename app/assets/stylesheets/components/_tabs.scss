@@ -1,6 +1,7 @@
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
   color: white;
   background-color: $yellow;
+
 }
 
 .nav-pills .nav-link {
@@ -12,7 +13,9 @@
 }
 
 .nav-pills .nav-link:hover {
-  color: $dark-purple;
+  color: #fff;
+  background-color: #f8c90d;
+  border-color: #f1c207;
 }
 
 div#pills-tabContent {
@@ -37,4 +40,11 @@ div#pills-tabContent {
 
 .bg-pink > p{
   font-size: 10px;
+}
+
+
+
+.button-style {
+  border-radius : 30px !important;
+  padding: 15px 30px !important;
 }

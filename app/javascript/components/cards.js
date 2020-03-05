@@ -38,8 +38,8 @@ const changerValue = () => {
   button_multi_selection.addEventListener('click', () => {
     if ( button_multi_selection.value === 'true') {
       button_multi_selection.value = 'false';
-      button_multi_selection.classList.remove('btn-primary');
-      button_multi_selection.classList.add('btn-warning');
+      button_multi_selection.classList.remove('btn-warning');
+      button_multi_selection.classList.add('btn-primary');
       tableauDesCheckBox.forEach( (checkbox) => {
         checkbox.classList.add('invisible');
         checkbox.checked = false;
@@ -49,8 +49,8 @@ const changerValue = () => {
       document.querySelector('#prints_ids').value = "";
     } else {
       button_multi_selection.value = 'true';
-      button_multi_selection.classList.remove('btn-warning');
-      button_multi_selection.classList.add('btn-primary');
+      button_multi_selection.classList.remove('btn-primary');
+      button_multi_selection.classList.add('btn-warning');
       tableauDesCheckBox.forEach( (checkbox) => {
         checkbox.classList.remove('invisible');
       })
