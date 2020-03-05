@@ -9,8 +9,9 @@
   </div>
 
 <div class="home-video-wrapper rounded">
-  <%= video_tag "banner.mp4", controls:true, autoplay: true, loop: :loop, muted: :muted, poster:'poster_photo.png', class:'home_video' %>
-  <div class="d-flex justify-content-center w-100" style="height: 90vh; width: 100vw;margin-top:20px; padding-top: 20px;">
+  <%= video_tag "banner1.mp4", controls:true, autoplay: true, loop: :loop, muted: :muted, poster:'poster_photo.png', class:'home_video' %>
+  <div class="d-flex justify-content-end w-100" style="height: 90vh; width: 100vw; margin-top: 0px; margin-right:460px;">
+
 
     <div class="form text-center form-homepage pt-3" >
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
