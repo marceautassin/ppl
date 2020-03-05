@@ -48,6 +48,8 @@ opacity: 0.6;
     background: white;
     transform: translateY(0);
     border-radius: 16px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .containerr .cardd .face.face1 .content{
@@ -89,7 +91,9 @@ opacity: 0.6;
 
 .containerr .cardd:hover .face.face2{
     transform: translateY(0);
-      border-radius: 23px;
+    border-radius: 23px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .containerr .cardd:hover h3{
