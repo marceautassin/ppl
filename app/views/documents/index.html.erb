@@ -59,7 +59,8 @@
         <%= text_field_tag :query,
         params[:query],
         class: "form-control",
-        placeholder: "Recherchez par année, mois, entreprise, etc..."
+        placeholder: "Recherchez par année, mois, entreprise, etc...",
+        autocomplete:"off"
         %>
         <%= button_tag type: 'submit', class: "bg-transparent p-1 text-warning loupe" do %>
           <i class="fa fa-search" aria-hidden="true"></i>
