@@ -11,8 +11,8 @@ input#query {
     text-align: center;
     font-weight: 200;
     &::placeholder {
-      color: #cacaca;
-      font-weight: 200;
+    color: #cacaca;
+    font-weight: 200;
     }
 }
 
@@ -38,3 +38,4 @@ input#query {
   border: 1px solid silver;
   width: 100%;
 }
+
