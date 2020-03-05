@@ -1,3 +1,7 @@
+
+
+
+
 <div class="container">
   <h2 class="mt-4 mb-0 text-left">Simulations</h2>
   <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
@@ -5,7 +9,7 @@
       <a class="nav-link active button-style text-white" id="pills-home-tab" data-toggle="pill" href="#pole-emploi" role="tab" aria-controls="pole-emploi" aria-selected="true">Pôle Emploi</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link button-style text-white" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Retraite</a>
+      <a class="nav-link button-style text-white" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="compte();">Retraite</a>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
@@ -58,46 +62,43 @@
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
+
+        <div class="retraite">
+          <h4 class="mb-4">Retraite</h4>
+          <%= image_tag "trimestres.svg", alt: "alttext", style: 'width:860px;height:450px; object-fit:cover;opacity:0.7;' %>
+          <div class="d-flex justify-content-between">
+            <div class="counter">
+              <i class="far fa-save fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number text-primary" id="nb-43" data-to="300" data-speed="1500"></h2>
+              <p class="count-text ">Trimestres acquis<br></p>
+            </div>
+            <div class="counter">
+              <i class="far fa-clock fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number text-primary" id="nb-129" data-to="1700" data-speed="1500"></h2>
+              <p class="count-text ">Trismestres restants<br></p>
+            </div>
+            <div class="counter">
+                <i class="fab fa-pagelines fa-2x text-warning"></i>
+                <h2 class="timer count-title count-number text-primary" id="nb-62" data-to="11900" data-speed="1500"></h2>
+                <p class="count-text ">Âge de départ à la retraite<br> (au plus tôt) </p>
+            </div>
+            <div class="counter">
+              <i class="fa fa-bug fa-2x text-warning"></i>
+              <h2 class="timer count-title count-number text-primary" id="nb-78" data-to="157" data-speed="1500"></h2>
+              <p class="count-text ">Âge de départ à la retraite<br> (à taux plein)</p>
+            </div>
+
+          </div>
+          <button type="button" class="btn btn-primary mt-3 w-100" data-toggle="modal" data-target="#exampleModalCenter">
+            Calcul du montant mensuel de ma retraite
+          </button>
+        </div>
+
 <!-- DEBUT CONTENU RETRAITE -->
 
 
-    <div>
-        <div class="wrapper mb-5">
-
-          <h4 class="mb-4">Retraite</h4>
-            <%= image_tag "trimestres.svg", alt: "alttext", style: 'width:760px;opacity:0.7;' %>
-            <div class="counter col_fourth" style="margin-top:-210px;">
-              <i class="far fa-save fa-2x text-warning"></i>
-              <h2 class="timer count-title count-number" data-to="300" data-speed="1500"><%= @trim_acquis %></h2>
-               <p class="count-text ">Trimestres acquis<br></p>
-               <br>
-            </div>
-
-            <div class="counter col_fourth" style="margin-top:-210px;">
-              <i class="far fa-clock fa-2x text-warning"></i>
-              <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"><%= @trim_restants %></h2>
-              <p class="count-text ">Trismestres restants<br></p>
-              <br>
-            </div>
-
-            <div class="counter col_fourth" style="margin-top:-210px;">
-              <i class="fab fa-pagelines fa-2x text-warning"></i>
-              <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"><%= @age_tot %></h2>
-              <p class="count-text ">Âge de départ à la retraite<br> (au plus tôt) </p>
-            </div>
-
-            <div class="counter col_fourth end" style="margin-top:-210px;">
-              <i class="fa fa-bug fa-2x text-warning"></i>
-              <h2 class="timer count-title count-number" data-to="157" data-speed="1500"><%= @age_plein %></h2>
-              <p class="count-text ">Âge de départ à la retraite<br> (à taux plein)</p>
-            </div>
-        </div>
 
 
-        <button type="button" class="btn btn-primary mt-3 w-100" data-toggle="modal" data-target="#exampleModalCenter">
-          Calcul du montant mensuel de ma retraite
-        </button>
-    </div>
 
 
 
@@ -127,7 +128,42 @@
   </div>
 
 
+<script>
 
+
+  const counterAnimation = (el, initialNum, finalNum) => {
+  if (Number.isInteger(finalNum)) {
+    let interval = setInterval(function() {
+      el.innerHTML = initialNum;
+      (initialNum >= finalNum) ? clearInterval(interval) : '';
+      initialNum++;
+    }, 20);
+  }
+  else {
+    let intInitialNum = Math.floor(initialNum);
+    let intFinalNum = Math.floor(finalNum);
+    let interval = setInterval(function() {
+      el.innerHTML = intInitialNum;
+      if (intInitialNum >= intFinalNum) {
+        clearInterval(interval);
+        el.innerHTML = `${finalNum.toString().replace('.', ',')}`;
+      }
+      intInitialNum++;
+    }, 20);
+  }
+}
+
+
+
+
+const compte = () => {
+  console.log('Hello');
+  counterAnimation(document.querySelector('#nb-43'), 0, 43);
+  counterAnimation(document.querySelector('#nb-129'), 86, 129);
+  counterAnimation(document.querySelector('#nb-62'), 19, 62);
+  counterAnimation(document.querySelector('#nb-78'), 35, 78);
+}
+</script>
 
 
 <style>
@@ -145,42 +181,10 @@ body {
     text-align: center;
 }
 
-/*-=-=-=-=-=-=-=-=-=-=-=- */
-/* Column Grids */
-/*-=-=-=-=-=-=-=-=-=-=-=- */
-
-.col_half { width: 49%; }
-.col_third { width: 32%; }
-.col_fourth { width: 23.5%; }
-.col_fifth { width: 18.4%; }
-.col_sixth { width: 15%; }
-.col_three_fourth { width: 74.5%;}
-.col_twothird{ width: 66%;}
-.col_half,
-.col_third,
-.col_twothird,
-.col_fourth,
-.col_three_fourth,
-.col_fifth{
-  position: relative;
-  display:inline;
-  display: inline-block;
-  float: left;
-  margin-right: 2%;
-  margin-bottom: 20px;
-  box-shadow: 0px 0px 20px #F5F7FA;
-  border-radius: 20px;
-  padding:20px;
-}
-.end { margin-right: 0 !important; }
-/* Column Grids End */
 
 .wrapper { width: 750px; margin: 30px auto; position: relative;}
-.counter { background-color: #ffffff; padding: 20px 0; border-radius: 20px;}
-.count-title { font-size: 50px;  margin-top: 10px; margin-bottom: 0; text-align: center; }
-.count-text { font-size: 14px; margin-bottom: 0; text-align: center; }
-.fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
-
+.counter { background-color: white; opacity:0.99;padding: 20px;border-radius: 20px; box-shadow: 0px 0px 20px #8480e91a; margin-top: -320px;height: 220px; }
+.counter i{padding-bottom:10px;}
 
 </style>
 
