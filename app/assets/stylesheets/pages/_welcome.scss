@@ -47,6 +47,7 @@ opacity: 0.6;
 .containerr .cardd:hover .face.face1{
     background: white;
     transform: translateY(0);
+    border-radius: 16px;
 }
 
 .containerr .cardd .face.face1 .content{
@@ -74,7 +75,7 @@ opacity: 0.6;
 
 .containerr .cardd .face.face2 {
     position: relative;
-    background: #211d43;
+    background: #4D54E1;
     color: white;
     font-weight: bold;
     display: flex;
@@ -88,6 +89,7 @@ opacity: 0.6;
 
 .containerr .cardd:hover .face.face2{
     transform: translateY(0);
+      border-radius: 23px;
 }
 
 .containerr .cardd:hover h3{
