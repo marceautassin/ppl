@@ -13,10 +13,11 @@
   font-size: 12px;
   padding: 10px 2px;
   color: #fff;
-  &:hover{
+  &:hover :active{
     color: $dark-purple;
   }
 }
+
 
 .etiquette{
   opacity:0;
