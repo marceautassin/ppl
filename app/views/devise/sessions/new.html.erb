@@ -1,6 +1,6 @@
 <div>
-  <div class="topbar d-flex justify-content-between">
-    <div class="text-left"><%= image_tag "billy.png", alt: "alttext", style:"width:90px; margin:1%;" %></div>
+  <div class="topbar d-flex justify-content-between align-items-center">
+    <div class="text-left"><%= image_tag "logo.png", alt: "alttext", style:"height:60px; margin-left:20px;" %></div>
     <div class="signup text-right p-2">
           <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
           <%= link_to "Je m'inscris", new_registration_path(resource_name), class:"btn btn-secondary btn-sm ml-2"  %><br />
@@ -10,12 +10,13 @@
 
 <div class="home-video-wrapper rounded">
   <%= video_tag "banner.mp4", controls:true, autoplay: true, loop: :loop, muted: :muted, poster:'poster_photo.png', class:'home_video' %>
-  <div class="d-flex justify-content-end w-100" style="height: 90vh; width: 100vw; margin-top: 0px; margin-right:460px;">
+  <div class="d-flex justify-content-center w-100" style="height: 90vh; width: 100vw;margin-top:20px; padding-top: 20px;">
 
-    <div class="form text-center" >
+    <div class="form text-center form-homepage pt-3" >
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <h2 class="text-primary mt-2">Administrophobe</h2>
-        <p class="text-secondary text-dark" style="font-size:18px;font-weight: normal;">Simplifiez le suivi de <br>votre vie professionnelle</p>
+        <i class="fas fa-cloud pb-3" style="color: #F9D132;"></i>
+        <h3 class="text-primary" style="font-size:24px;font-weight: normal;">Avis aux Administrophobes</h3>
+        <p style="font-size: 16px;">Venez simplifier le suivi de votre vie professionnelle</p>
           <div class="form-inputs text-left">
             <%= f.input :email,
                         required: false,
@@ -26,12 +27,11 @@
                         required: false,
                         input_html: { autocomplete: "current-password" },
                         label: "Mot de passe" %>
-            <div class="remember mt-3"><%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
             </div>
           </div>
 
           <div class="form-actions mt-3">
-            <div class="jemeconnecte"><%= f.button :submit, "Je me connecte", class:"btn btn-success mr-1 w-100"%></div>
+            <div class="jemeconnecte"><%= f.button :submit, "Je me connecte", class:"btn btn-primary mr-1 w-100 text-white"%></div>
             <div class="">
               <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
               <%= link_to "Mot de passe oublié ?", new_password_path(resource_name), class: 'text-dark', style: 'font-size: 12px;' %>

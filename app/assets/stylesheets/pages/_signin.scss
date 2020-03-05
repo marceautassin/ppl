@@ -38,14 +38,16 @@ p.home {
   font-size: 2rem;
   opacity: 0.8;
 }
+
 .form {
-  width:417px;
-  height: 491px;
-  padding:2%;
-  background: $white;
-  border-radius: 20px;
-  box-shadow: 0px 0px 20px #211d437d;
+    width: 417px;
+    height: 442px;
+    padding: 2%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px #211d4314;
 }
+
 h3.modules {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -60,6 +62,7 @@ h3.modules {
 }
 .form-control {
   border-radius:20px;
+  font-weight: lighter;
 }
 .footer {
   background: #211d43;
@@ -92,3 +95,6 @@ h3.modules {
   font-weight: bold;
 }
 
+.form-homepage{
+  background-color: rgba(255,255,255,0.79);
+}
