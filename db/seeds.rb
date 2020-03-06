@@ -1,12 +1,12 @@
 puts 'Création des fiches de paies...'
   user = User.new(
-    first_name: 'Thomas',
-    last_name: 'Thevenoud',
+    first_name: 'Maxime',
+    last_name: 'L',
     social_security_number: '188091212365476',
-    email: 'thomas.thevenoud@escroc.fr',
+    email: 'maxime.l@administrophobe.fr',
     password: 'azerty'
   )
-  user.photo.attach(io: File.open("app/assets/images/thevenoud.jpg"), filename: 'thevenoud.jpg', content_type: 'image/jpg')
+  user.photo.attach(io: File.open("app/assets/images/villeret.jpg"), filename: 'villeret.jpg', content_type: 'image/jpg')
   user.save!
 
   period = (Date.new(2010, 1)..Date.new(2016, 12)).select {|d| d.day == 1}
